@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -43,14 +44,17 @@
       margin: 0 auto 32px auto;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
     }
 
     .logo {
-      font-weight: 700;
-      font-size: 1.1rem;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 44px; /* ajuste se quiser maior/menor */
+      display: block;
     }
 
     .hero {
@@ -313,7 +317,10 @@
 <body>
   <header>
     <div class="nav">
-      <div class="logo">TEMPUS CONSULTORIA</div>
+      <div class="logo">
+        <!-- certifique-se de que o arquivo está na raiz do repo com esse nome -->
+        <img src="TEMPUS - Consultoria.png" alt="TEMPUS - Soluções Financeiras Inteligentes" />
+      </div>
     </div>
     <div class="hero">
       <div>
