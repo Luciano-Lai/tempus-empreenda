@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TEMPUS | Conhecimento que Conecta</title>
+  <title>TEMPUS | The University Venture Model</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap');
 
     :root {
       --primary-navy: #0c2d48; 
       --accent-gold: #b8924e;  
-      --bright-bg: #ffffff;    
+      --white: #ffffff;
       --text-gray: #4a5568;
+      --bg-light: #f8fafc;
       --serif: 'Playfair Display', serif;
       --sans: 'Inter', sans-serif;
     }
@@ -20,121 +21,99 @@
 
     body {
       font-family: var(--sans);
-      background-color: var(--bright-bg);
+      background-color: var(--white);
       color: var(--primary-navy);
       line-height: 1.6;
     }
 
-    /* BARRA DE NAVEGAÇÃO - Protege o topo da imagem */
+    /* NAV - Estilo Minimalista de Luxo */
     nav {
       position: fixed;
       top: 0; width: 100%;
       height: 90px;
-      background: white;
+      background: rgba(255, 255, 255, 0.98);
       display: flex;
       align-items: center;
       z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      border-bottom: 1px solid #eee;
     }
     .nav-container {
       max-width: 1200px; margin: 0 auto; width: 100%;
-      display: flex; justify-content: space-between; padding: 0 30px;
-      align-items: center;
+      display: flex; justify-content: space-between; padding: 0 30px; align-items: center;
     }
-    .logo img { height: 50px; display: block; }
-    
+    .logo img { height: 50px; }
     .nav-menu a {
       text-decoration: none;
       color: var(--primary-navy);
       font-weight: 600;
-      font-size: 13px;
+      font-size: 12px;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       margin-left: 30px;
-      transition: color 0.3s;
     }
-    .nav-menu a:hover { color: var(--accent-gold); }
 
-    /* HERO SECTION - Ajustada para não cortar */
-    .hero {
-      margin-top: 90px; /* Empurra a imagem para baixo da nav */
+    /* HERO - A Imagem Completa (Protegida) */
+    .hero-container {
+      margin-top: 90px;
       width: 100%;
-      /* Aspect ratio baseado na sua imagem para garantir que apareça inteira */
-      aspect-ratio: 16 / 9; 
-      background: url('Conhecimento que conecta.png') top center/100% auto no-repeat;
-      background-color: #f8f9fa;
-      position: relative;
+      background-color: #f4f4f4;
+    }
+    .hero-image {
+      width: 100%;
+      display: block; /* Garante que a imagem "Conhecimento que conecta.png" apareça inteira */
     }
 
-    /* CONTEÚDO ESTRATÉGICO */
-    .section-padding { padding: 100px 0; }
+    /* SEÇÕES DE CONTEÚDO */
+    .section { padding: 120px 0; }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 30px; }
 
-    .intro-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
+    .tese-header { text-align: center; max-width: 900px; margin: 0 auto 60px; }
+    .tese-header h2 { font-family: var(--serif); font-size: 48px; margin-bottom: 20px; }
+    .tese-header p { font-size: 20px; color: var(--text-gray); font-style: italic; }
 
-    h2 { font-family: var(--serif); font-size: 42px; line-height: 1.2; margin-bottom: 25px; }
-    p { font-size: 18px; color: var(--text-gray); margin-bottom: 20px; }
-
-    .highlight-box {
-      background: #fdfbf7;
-      padding: 40px;
+    .grid-tese { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    blockquote {
+      font-size: 24px;
       border-left: 5px solid var(--accent-gold);
-      border-radius: 4px;
+      padding-left: 30px;
+      margin: 40px 0;
+      color: var(--primary-navy);
+      font-weight: 300;
     }
 
-    /* CARDS DE IMPACTO */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-      margin-top: 80px;
-    }
-    .card {
-      background: white;
-      padding: 40px;
-      border: 1px solid #eee;
-      transition: all 0.3s ease;
-    }
-    .card:hover {
-      border-color: var(--accent-gold);
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.05);
-    }
-    .card h3 { font-family: var(--serif); font-size: 24px; margin-bottom: 15px; }
+    /* PILARES DO HUB */
+    .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
+    .pillar-card { padding: 40px; border: 1px solid #eee; transition: 0.3s; }
+    .pillar-card:hover { border-color: var(--accent-gold); background: var(--bg-light); }
+    .pillar-card h3 { font-family: var(--serif); font-size: 24px; margin-bottom: 20px; color: var(--accent-gold); }
 
-    /* BOTÃO */
-    .btn {
+    /* DIFERENCIAL & CTA FINAL */
+    .cta-section { background: var(--primary-navy); color: var(--white); text-align: center; }
+    .cta-section h2 { font-family: var(--serif); font-size: 42px; margin-bottom: 20px; color: var(--white); }
+    .form-minimal { max-width: 600px; margin: 50px auto 0; text-align: left; background: white; padding: 40px; border-radius: 4px; }
+    .form-minimal input, .form-minimal select {
+      width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid #ddd; font-family: inherit;
+    }
+
+    .btn-gold {
       display: inline-block;
-      padding: 18px 40px;
-      background: var(--primary-navy);
+      padding: 20px 50px;
+      background: var(--accent-gold);
       color: white;
       text-decoration: none;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 2px;
-      font-size: 12px;
-      margin-top: 20px;
-      transition: 0.3s;
+      border: none;
+      width: 100%;
+      cursor: pointer;
     }
-    .btn:hover { background: var(--accent-gold); }
 
-    footer {
-      padding: 80px 0;
-      text-align: center;
-      background: #f4f7f9;
-      border-top: 1px solid #e2e8f0;
-    }
-    footer img { height: 45px; margin-bottom: 25px; }
+    footer { padding: 60px 0; text-align: center; border-top: 1px solid #eee; font-size: 14px; }
 
-    @media (max-width: 900px) {
-      .intro-grid, .features-grid { grid-template-columns: 1fr; }
-      .hero { aspect-ratio: 4 / 3; background-size: cover; }
-      .nav-menu { display: none; }
+    @media (max-width: 768px) {
+      .grid-tese, .pillars-grid { grid-template-columns: 1fr; }
+      .tese-header h2 { font-size: 32px; }
     }
   </style>
 </head>
@@ -142,58 +121,93 @@
 
   <nav>
     <div class="nav-container">
-      <div class="logo">
-        <img src="TEMPUS - Consultoria.png" alt="TEMPUS">
-      </div>
+      <div class="logo"><img src="TEMPUS - Consultoria.png" alt="TEMPUS"></div>
       <div class="nav-menu">
-        <a href="#proposta">Proposta</a>
-        <a href="#hub">HUB de Negócios</a>
-        <a href="#contato">Falar com Consultor</a>
+        <a href="#tese">A Tese</a>
+        <a href="#pilares">O Modelo</a>
+        <a href="#reuniao">Reunião Privada</a>
       </div>
     </div>
   </nav>
 
-  <section class="hero"></section>
+  <div class="hero-container">
+    <img src="image_ebcc17.jpg" alt="Conhecimento que Conecta" class="hero-image">
+  </div>
 
-  <section class="section-padding" id="proposta">
+  <section class="section" id="tese">
     <div class="container">
-      <div class="intro-grid">
-        <div>
-          <h2>O Campus Acadêmico como um <span style="color: var(--accent-gold);">HUB de Negócios.</span></h2>
-          <p>Não permita que a infraestrutura da sua faculdade se torne um custo passivo. Nós transformamos o seu campus em um ecossistema vibrante de inovação.</p>
-          <p>Através do empreendedorismo e de <strong>linhas de crédito estruturadas para empresas</strong>, conectamos o talento universitário ao vigor do mercado global.</p>
-        </div>
-        <div class="highlight-box">
-          <h3 style="font-family: var(--serif); font-size: 28px; margin-bottom: 15px;">A Visão Tempus</h3>
-          <p>Unimos a excelência acadêmica ao capital de risco. Onde outros veem salas de aula, nós enxergamos o berço das próximas startups de alto impacto.</p>
-          <a href="#contato" class="btn">Solicitar Apresentação Executiva</a>
-        </div>
+      <div class="tese-header">
+        <h2>O Diploma não é mais o destino final. <span style="color: var(--accent-gold);">O Negócio é.</span></h2>
       </div>
-
-      <div class="features-grid" id="hub">
-        <div class="card">
-          <h3>Retenção Ativa</h3>
-          <p>O aluno permanece na instituição pelo valor real e pela renda que o seu próprio negócio gera dentro do campus.</p>
+      <div class="grid-tese">
+        <div>
+          <p>Faculdades privadas hoje enfrentam um paradoxo: marketing caro, campi ociosos e alunos que retardam a formatura por medo do desemprego.</p>
+          <p>Nós quebramos esse ciclo. A TEMPUS injeta cultura empreendedora e linhas de crédito reais para empresas dentro da sua instituição.</p>
+          <blockquote>
+            "Não formamos apenas profissionais. Formamos os próximos sócios da sua faculdade."
+          </blockquote>
         </div>
-        <div class="card">
-          <h3>Inovação Financiada</h3>
-          <p>Viabilizamos o crescimento de empresas juniores e startups de egressos com suporte financeiro estratégico.</p>
-        </div>
-        <div class="card">
-          <h3>Patrimônio Vivo</h3>
-          <p>Transformamos espaços ociosos em centros de inteligência e lucro, gerando novos ativos para a faculdade.</p>
+        <div style="background: var(--bg-light); padding: 40px;">
+          <h3 style="margin-bottom: 20px;">The University Venture Model</h3>
+          <p>Vá além do marketing de captação. Transforme sua infraestrutura ociosa em um HUB de negócios com capital próprio para startups de alunos e pesquisa aplicada financiada pelo mercado.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <footer id="contato">
+  <section class="section" id="pilares" style="background-color: #fafafa;">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 60px; font-family: var(--serif);">Os 3 Pilares do HUB</h2>
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <h3>Monetização do Espaço</h3>
+          <p>O campus deixa de ser um custo imobiliário e vira um ecossistema de pesquisa aplicada e Corporate Venture.</p>
+        </div>
+        <div class="pillar-card">
+          <h3>Retenção por Ativos</h3>
+          <p>O aluno não fica pela aula; ele fica pelo negócio que está construindo e pelo crédito que está recebendo.</p>
+        </div>
+        <div class="pillar-card">
+          <h3>Equity Institucional</h3>
+          <p>A faculdade posiciona-se como sócia-investidora, criando uma nova linha de receita a longo prazo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="text-align: center;">
+      <h2 style="margin-bottom: 30px;">Sem Risco Operacional.</h2>
+      <p style="max-width: 800px; margin: 0 auto 40px; font-size: 20px;">
+        A TEMPUS opera a formação e a estrutura de crédito para as empresas. A faculdade entra com a marca e o ecossistema. 
+        <strong>Este não é um programa de prateleira.</strong> É um reposicionamento para líderes de mercado.
+      </p>
+    </div>
+  </section>
+
+  <section class="section cta-section" id="reuniao">
+    <div class="container">
+      <h2>Uma decisão estratégica,<br>não uma campanha publicitária.</h2>
+      <p style="color: #cbd5e1; max-width: 700px; margin: 20px auto;">
+        Nossas parcerias são discutidas exclusivamente com Reitores, Mantenedores e Diretores de Estratégia. O tempo de competir apenas por preço acabou.
+      </p>
+      
+      <div class="form-minimal">
+        <form>
+          <input type="text" placeholder="Nome do Decisor" required>
+          <input type="text" placeholder="Cargo (Reitor, Mantenedor...)" required>
+          <input type="text" placeholder="Instituição de Ensino" required>
+          <input type="tel" placeholder="WhatsApp para Contato" required>
+          <button type="submit" class="btn-gold">Solicitar Reunião Privada</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
     <div class="container">
       <img src="TEMPUS - Consultoria.png" alt="TEMPUS">
-      <p style="font-size: 14px; color: var(--text-gray);">
-        © 2026 TEMPUS Consultoria Executiva.<br>
-        Onde o Conhecimento Conecta e o Mercado Transforma.
-      </p>
+      <p>© 2026 TEMPUS Consultoria | The University Venture Model</p>
     </div>
   </footer>
 
