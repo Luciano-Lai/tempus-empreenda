@@ -10,8 +10,7 @@
     :root {
       --primary-navy: #0c2d48; 
       --accent-gold: #b8924e;  
-      --bright-bg: #fdfdfd;    
-      --white: #ffffff;
+      --bright-bg: #ffffff;    
       --text-gray: #4a5568;
       --serif: 'Playfair Display', serif;
       --sans: 'Inter', sans-serif;
@@ -24,106 +23,116 @@
       font-family: var(--sans);
       background-color: var(--bright-bg);
       color: var(--primary-navy);
-      line-height: 1.6;
+      overflow-x: hidden;
     }
 
     .container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
 
-    /* Nav */
+    /* Header Slim & High-End */
     nav {
-      position: fixed;
+      position: absolute;
       top: 0; width: 100%;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
       z-index: 1000;
-      padding: 15px 0;
-      border-bottom: 1px solid rgba(12, 45, 72, 0.05);
+      padding: 25px 0;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.9), transparent);
     }
     .nav-content { display: flex; justify-content: space-between; align-items: center; }
-    .logo img { height: 55px; display: block; }
+    .logo img { height: 60px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); }
 
-    /* Hero Section - Usando a nova imagem vibrante */
+    /* Hero Section: A Imagem é a Estrela */
     .hero-section {
-      height: 90vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.1)), 
-                  url('Conhecimento que conecta.png') center/cover no-repeat;
-      margin-top: 60px;
-    }
-
-    .hero-box {
-      background: rgba(255, 255, 255, 0.94);
-      padding: 60px;
-      border-radius: 4px;
-      max-width: 900px;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.1);
-      border-top: 6px solid var(--accent-gold);
-    }
-
-    /* Ênfase máxima na frase principal */
-    .hero-tag { 
-      font-family: var(--sans);
-      font-weight: 800; 
-      letter-spacing: 5px; 
-      font-size: 18px; 
-      color: var(--primary-navy); 
-      text-transform: uppercase; 
-      margin-bottom: 25px; 
-      display: block;
       position: relative;
+      height: 100vh;
+      width: 100%;
+      background: url('Conhecimento que conecta.png') center/cover no-repeat;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 80px;
     }
-    .hero-tag span { color: var(--accent-gold); }
-    .hero-tag::after {
+
+    /* Overlay sutil apenas para garantir leitura do CTA se necessário */
+    .hero-section::after {
       content: '';
-      display: block;
-      width: 50px;
-      height: 2px;
-      background: var(--accent-gold);
-      margin: 15px auto 0;
+      position: absolute;
+      bottom: 0; left: 0; width: 100%; height: 30%;
+      background: linear-gradient(to top, rgba(255,255,255,0.8), transparent);
+      z-index: 1;
     }
 
-    .hero-section h1 { font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin: 0 0 25px 0; color: var(--primary-navy); }
-    .hero-section p { font-size: 1.4rem; color: var(--text-gray); margin-bottom: 40px; font-weight: 400; max-width: 780px; margin-left: auto; margin-right: auto; }
+    .hero-cta-wrapper {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      text-align: center;
+    }
 
+    /* Botão Flutuante Elegante */
     .btn {
       display: inline-block;
-      padding: 20px 50px;
+      padding: 22px 50px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      border-radius: 4px;
-      transition: all 0.3s ease;
+      letter-spacing: 3px;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
       cursor: pointer;
       text-decoration: none;
       font-size: 13px;
+      border-radius: 2px;
     }
-    .btn-navy { background: var(--primary-navy); color: var(--white); }
-    .btn-navy:hover { background: var(--accent-gold); transform: translateY(-3px); box-shadow: 0 15px 30px rgba(184, 146, 78, 0.3); }
-
-    /* Seções de Conteúdo */
-    .section-padding { padding: 120px 0; }
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-    .serif-title { font-family: var(--serif); font-size: 46px; line-height: 1.2; margin-bottom: 30px; color: var(--primary-navy); }
-    
-    .hub-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px; }
-    .hub-card { 
-      background: var(--white); padding: 50px; border-radius: 4px; 
-      border: 1px solid #f0f0f0; transition: 0.4s;
+    .btn-gold { 
+      background: var(--accent-gold); 
+      color: white; 
+      box-shadow: 0 15px 35px rgba(184, 146, 78, 0.4);
     }
-    .hub-card:hover { border-color: var(--accent-gold); transform: translateY(-10px); }
-    .hub-card h3 { font-family: var(--serif); font-size: 26px; margin-bottom: 20px; color: var(--primary-navy); }
+    .btn-gold:hover { 
+      transform: translateY(-5px); 
+      background: var(--primary-navy);
+      box-shadow: 0 20px 40px rgba(12, 45, 72, 0.3);
+    }
 
-    /* Contato */
-    .contact-section { background: #f9fbfd; padding: 120px 0; }
-    .form-container { max-width: 700px; margin: 0 auto; background: var(--white); padding: 60px; border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.03); }
-    
-    footer { padding: 80px 0; text-align: center; border-top: 1px solid #eee; }
-    footer img { height: 50px; margin-bottom: 30px; }
+    /* Seção de Transição Estratégica */
+    .intro-text {
+      padding: 100px 0;
+      text-align: center;
+      background: var(--bright-bg);
+    }
+    .intro-text h2 {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      max-width: 900px;
+      margin: 0 auto 30px;
+      line-height: 1.2;
+    }
+    .intro-text p {
+      font-size: 1.25rem;
+      color: var(--text-gray);
+      max-width: 800px;
+      margin: 0 auto;
+    }
 
-    @media (max-width: 992px) { .grid-2, .hub-grid { grid-template-columns: 1fr; } }
+    /* Grid de Soluções */
+    .solution-section { padding-bottom: 100px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+    .card {
+      padding: 40px;
+      border: 1px solid #f0f0f0;
+      transition: 0.3s;
+    }
+    .card:hover { border-color: var(--accent-gold); background: #fafafa; }
+    .card h3 { font-family: var(--serif); font-size: 24px; margin-bottom: 15px; }
+
+    footer {
+      padding: 60px 0;
+      text-align: center;
+      background: #f8fafc;
+      border-top: 1px solid #eee;
+    }
+    footer img { height: 50px; margin-bottom: 20px; }
+
+    @media (max-width: 768px) {
+      .grid-3 { grid-template-columns: 1fr; }
+      .hero-section { height: 70vh; }
+    }
   </style>
 </head>
 <body>
@@ -133,54 +142,46 @@
       <div class="logo">
         <img src="TEMPUS - Consultoria.png" alt="TEMPUS">
       </div>
-      <a href="#contato" class="btn btn-navy" style="padding: 12px 25px; font-size: 11px;">Consultoria Estratégica</a>
+      <a href="#contato" class="btn" style="padding: 12px 25px; border: 1px solid var(--primary-navy); color: var(--primary-navy); font-size: 10px;">Falar com Consultor</a>
     </div>
   </nav>
 
   <section class="hero-section">
-    <div class="hero-box">
-      <span class="hero-tag">Conhecimento que <span>conecta</span></span>
-      <h1 class="serif">Liderança, Inovação e <br><span style="color: var(--accent-gold);">Ativos de Alto Impacto.</span></h1>
-      <p>Transformamos o seu campus em um Vale do Silício acadêmico através do empreendedorismo real e linhas de crédito estruturadas para empresas.</p>
-      <a href="#contato" class="btn btn-navy">Agendar Consultoria Executiva</a>
+    <div class="hero-cta-wrapper">
+      <a href="#sobre" class="btn btn-gold">Explorar o Ecossistema</a>
     </div>
   </section>
 
-  <section class="section-padding">
+  <section class="intro-text" id="sobre">
     <div class="container">
-      <div class="grid-2">
-        <div>
-          <h2 class="serif-title">Dê um novo propósito estratégico à sua infraestrutura.</h2>
-          <p>O campus não deve ser um custo passivo, mas um <strong>HUB de negócios vivo</strong>. Nossa metodologia converte espaços físicos em centros de aceleração, onde a teoria acadêmica se torna solução de mercado.</p>
-          <p>Criamos o ambiente ideal para que o talento da sua instituição encontre o recurso necessário, gerando retenção, prestígio e novos ativos financeiros.</p>
-        </div>
-        <div style="background: #f8fafc; padding: 50px; border-radius: 4px; border-left: 8px solid var(--accent-gold);">
-          <h3 class="serif" style="font-size: 30px; margin-top: 0; color: var(--primary-navy);">A Tese Tempus</h3>
-          <p>Viabilizamos o futuro ao unir excelência acadêmica a linhas de crédito exclusivas para startups de alunos. Onde outros veem salas de aula, nós construímos o próximo grande portfólio do mercado privado.</p>
-        </div>
-      </div>
+      <h2>Transformamos o campus acadêmico no próximo <span style="color: var(--accent-gold);">Vale do Silício.</span></h2>
+      <p>Através do empreendedorismo e de linhas de crédito estruturadas para empresas, conectamos o talento universitário ao vigor do mercado global.</p>
+    </div>
+  </section>
 
-      <div class="hub-grid">
-        <div class="hub-card">
-          <h3>Ecossistema de Renda</h3>
-          <p>Reduzimos a evasão ao tornar a faculdade o lugar onde o aluno gera sua própria independência financeira.</p>
+  <section class="solution-section">
+    <div class="container">
+      <div class="grid-3">
+        <div class="card">
+          <h3>HUB de Negócios</h3>
+          <p>Não deixe o seu campus ser apenas infraestrutura física. Dê um novo propósito estratégico aos espaços ociosos.</p>
         </div>
-        <div class="hub-card">
-          <h3>Ativos Imobiliários</h3>
-          <p>Transformamos metros quadrados ociosos em laboratórios de inovação financiados por investidores.</p>
+        <div class="card">
+          <h3>Crédito & Inovação</h3>
+          <p>Linhas de crédito exclusivas para startups de alunos, transformando conhecimento em ativos reais.</p>
         </div>
-        <div class="hub-card">
-          <h3>Equity Acadêmico</h3>
-          <p>A instituição posiciona-se como sócia-investidora do sucesso de seus egressos, criando valor perene.</p>
+        <div class="card">
+          <h3>Retenção de Elite</h3>
+          <p>O aluno não busca apenas um diploma, ele busca o sucesso. Criamos o ecossistema que garante ambos.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <footer>
+  <footer id="contato">
     <div class="container">
       <img src="TEMPUS - Consultoria.png" alt="TEMPUS">
-      <p>© 2026 TEMPUS Consultoria | Conhecimento que Conecta.</p>
+      <p>TEMPUS Consultoria | 2026. Conhecimento que Conecta.</p>
     </div>
   </footer>
 
