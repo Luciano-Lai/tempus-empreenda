@@ -3,227 +3,669 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TEMPUS | University Venture Model</title>
+  <title>TEMPUS – The University Venture Model</title>
+  <meta name="description" content="Transforme seu campus em um Vale do Silício privado. TEMPUS: HUB de negócios, cultura empreendedora e crédito para startups de alunos em faculdades privadas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --gold: #c5a059;
-      --gold-dark: #a68545;
-      --black: #0a0a0a;
-      --gray-900: #121212;
-      --gray-800: #1a1a1a;
-      --gray-400: #a1a1aa;
-      --white: #ffffff;
-      --serif: 'Playfair Display', serif;
-      --sans: 'Inter', system-ui, sans-serif;
+      --bg: #05070b;
+      --bg-alt: #0b1018;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #f5c859;   /* dourado fosco */
+      --accent-soft: rgba(245, 200, 89, 0.2);
+      --border: #1f2933;
+      --max-width: 1040px;
     }
 
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
-
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
-      font-family: var(--sans);
-      background-color: var(--black);
-      color: var(--white);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background-color: var(--bg);
       line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
     }
 
-    /* Utilitários de Luxo */
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-    .gold-text { color: var(--gold); }
-    .serif { font-family: var(--serif); }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-    /* Header & Nav */
+    /* HEADER + NAV */
+
     header {
-      padding: 120px 0 80px;
-      background: radial-gradient(circle at top right, #1a1a1a 0%, #0a0a0a 100%);
+      background: radial-gradient(circle at top, #111827 0, #020308 55%);
+      color: var(--text);
+      padding: 0 16px 56px 16px;
     }
 
-    nav {
-      position: fixed;
-      top: 0; width: 100%;
-      background: rgba(10, 10, 10, 0.8);
-      backdrop-filter: blur(12px);
-      z-index: 1000;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      padding: 20px 0;
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(5, 7, 11, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
     }
 
-    .nav-content { display: flex; justify-content: space-between; align-items: center; }
-    .logo-text { font-family: var(--serif); font-size: 24px; letter-spacing: 2px; font-weight: 700; }
-
-    /* Hero Section */
-    .hero { text-align: center; max-width: 900px; margin: 0 auto; }
-    .hero-tag { 
-      font-size: 12px; text-transform: uppercase; letter-spacing: 4px; 
-      color: var(--gold); margin-bottom: 20px; font-weight: 600;
-    }
-    .hero h1 { 
-      font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; 
-      margin-bottom: 30px; font-weight: 700;
-    }
-    .hero p { 
-      font-size: 1.2rem; color: var(--gray-400); 
-      max-width: 700px; margin: 0 auto 40px; font-weight: 300;
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 18px 40px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo img {
+      height: 42px;
+      display: block;
       border-radius: 4px;
-      transition: all 0.3s;
+    }
+
+    .logo-text {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+    }
+
+    .menu {
+      display: flex;
+      gap: 20px;
+      font-size: 0.9rem;
+    }
+
+    .menu a {
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      color: #d1d5db;
+    }
+
+    .menu a:hover {
+      border-bottom-color: var(--accent);
+      color: #f9fafb;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #e5e7eb;
       cursor: pointer;
-      font-size: 13px;
+      padding: 4px;
     }
 
-    .btn-gold { background: var(--gold); color: var(--black); border: none; }
-    .btn-gold:hover { background: var(--gold-dark); transform: translateY(-2px); }
-
-    /* Seção Agressiva (The Problem) */
-    .problem-section { padding: 100px 0; background: var(--gray-900); }
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-    .stat-box { border-left: 2px solid var(--gold); padding-left: 20px; margin-bottom: 30px; }
-    .stat-num { font-size: 32px; font-weight: 700; color: var(--gold); display: block; }
-
-    /* Seção Solução (O Vale do Silício Brasileiro) */
-    .solution-section { padding: 100px 0; }
-    .solution-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-    .solution-card { 
-      background: var(--gray-800); padding: 40px; border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.03); transition: 0.3s;
+    .menu-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      margin: 4px 0;
+      background: #e5e7eb;
+      transition: transform 0.2s ease, opacity 0.2s ease;
     }
-    .solution-card:hover { border-color: var(--gold); }
-    .solution-card h3 { font-family: var(--serif); font-size: 24px; margin-bottom: 15px; }
 
-    /* Footer / CTA */
-    .cta-final { 
-      padding: 120px 0; text-align: center; 
-      background: linear-gradient(to bottom, #0a0a0a, #1a1a1a);
+    .menu-open .menu-toggle span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
     }
-    .form-minimal { max-width: 600px; margin: 40px auto; }
-    .form-group { margin-bottom: 20px; }
-    input, select, textarea {
-      width: 100%; background: transparent; border: none; 
-      border-bottom: 1px solid #333; color: white; padding: 15px 0;
-      font-size: 16px; outline: none; transition: 0.3s;
-    }
-    input:focus { border-bottom-color: var(--gold); }
 
-    footer { padding: 40px 0; border-top: 1px solid #1a1a1a; font-size: 12px; color: #444; text-align: center; }
+    .menu-open .menu-toggle span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-open .menu-toggle span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+
+    /* HERO */
+
+    .hero {
+      max-width: var(--max-width);
+      margin: 28px auto 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-main {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .hero-header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .hero-logo img {
+      height: 64px;
+      display: block;
+      border-radius: 6px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-tag {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .hero-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.1rem, 3.1vw, 2.9rem);
+      line-height: 1.1;
+    }
+
+    .hero-title span {
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: #d1d5db;
+      max-width: 520px;
+    }
+
+    .hero-note {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .btn-primary {
+      padding: 12px 22px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      background: var(--accent);
+      color: #111827;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .btn-secondary {
+      padding: 11px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.7);
+      color: #e5e7eb;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .hero-card {
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.6));
+      border-radius: 18px;
+      padding: 22px 20px;
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+      font-size: 0.92rem;
+    }
+
+    .hero-card-title {
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .hero-card p {
+      margin: 0 0 12px 0;
+      color: #e5e7eb;
+    }
+
+    .hero-card ul {
+      margin: 8px 0 0 18px;
+      padding: 0;
+      color: #d1d5db;
+    }
+
+    /* SEÇÕES GERAIS */
+
+    main {
+      padding: 40px 16px 60px 16px;
+    }
+
+    section {
+      max-width: var(--max-width);
+      margin: 0 auto 40px auto;
+      background: linear-gradient(135deg, rgba(11, 16, 24, 0.96), rgba(5, 7, 11, 0.98));
+      border-radius: 14px;
+      padding: 22px 20px;
+      border: 1px solid var(--border);
+    }
+
+    section h2 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-family: "Playfair Display", serif;
+      font-size: 1.6rem;
+    }
+
+    section p {
+      margin: 0 0 10px 0;
+      color: var(--text);
+      font-size: 0.98rem;
+    }
+
+    .section-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .quote {
+      font-size: 0.98rem;
+      color: #e5e7eb;
+      border-left: 3px solid var(--accent);
+      padding-left: 14px;
+      margin-top: 8px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-soft);
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    .pill strong {
+      color: var(--accent);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    .card {
+      padding: 14px 12px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--border);
+      font-size: 0.94rem;
+    }
+
+    .card h3 {
+      margin: 0 0 6px 0;
+      font-size: 1rem;
+      color: var(--accent);
+      font-family: "Playfair Display", serif;
+    }
+
+    .highlight {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      color: #f9fafb;
+      font-size: 0.95rem;
+    }
+
+    .cta-section {
+      text-align: center;
+    }
+
+    .cta-section p {
+      max-width: 620px;
+      margin: 0 auto 12px auto;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    /* FORMULÁRIO FINAL */
+
+    .form {
+      max-width: 520px;
+      margin: 18px auto 0 auto;
+      text-align: left;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .form label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .form input {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text);
+      font-size: 0.94rem;
+      font-family: inherit;
+    }
+
+    .form input::placeholder {
+      color: #6b7280;
+    }
+
+    .form-actions {
+      margin-top: 10px;
+      text-align: right;
+    }
+
+    footer {
+      padding: 20px 16px 28px 16px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-align: center;
+      border-top: 1px solid #111827;
+      background: #020308;
+    }
 
     @media (max-width: 768px) {
-      .grid-2, .solution-grid { grid-template-columns: 1fr; }
-      .hero h1 { font-size: 2.5rem; }
+      .nav {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .menu {
+        width: 100%;
+        flex-direction: column;
+        gap: 4px;
+        margin-top: 4px;
+        display: none;
+        font-size: 0.85rem;
+      }
+
+      .menu.open {
+        display: flex;
+      }
+
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        margin-top: 20px;
+      }
+
+      .hero-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-logo img {
+        height: 56px;
+      }
+
+      .grid-3 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .form-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
   </style>
 </head>
 <body>
-
-  <nav>
-    <div class="container nav-content">
-      <div class="logo-text">TEMPUS</div>
-      <div class="nav-links">
-        <button class="btn btn-gold" onclick="document.getElementById('contato').scrollIntoView()">Consultoria Estratégica</button>
+  <header>
+    <!-- Navbar fixa -->
+    <div class="topbar">
+      <div class="nav">
+        <div class="logo">
+          <img src="TEMPUS - Consultoria.png" alt="TEMPUS - Soluções Financeiras Inteligentes" />
+          <div class="logo-text">The University Venture Model</div>
+        </div>
+        <button class="menu-toggle" aria-label="Abrir menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="menu">
+          <a href="#tese">Tese</a>
+          <a href="#pilares">HUB</a>
+          <a href="#diferencial">Diferencial</a>
+          <a href="#cta-final">Reunião Privada</a>
+        </nav>
       </div>
     </div>
-  </nav>
 
-  <header>
-    <div class="container hero">
-      <span class="hero-tag">University Venture Model</span>
-      <h1 class="serif">O Diploma não é mais o destino. <span class="gold-text">O negócio é.</span></h1>
-      <p>Transforme seus elefantes brancos em HUBs de inovação. Financiamos as startups dos seus alunos e geramos o Vale do Silício dentro do seu campus.</p>
-      <div class="cta-row">
-        <button class="btn btn-gold" onclick="document.getElementById('contato').scrollIntoView()">Agendar Reunião com a Reitoria</button>
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-main">
+        <div class="hero-header">
+          <div class="hero-logo">
+            <img src="TEMPUS - Consultoria.png" alt="TEMPUS - Soluções Financeiras Inteligentes" />
+          </div>
+          <div>
+            <div class="hero-tag">TEMPUS · Empreenda</div>
+            <h1 class="hero-title">
+              Transforme seu campus em um <span>Vale do Silício privado</span>.
+            </h1>
+          </div>
+        </div>
+
+        <p class="hero-subtitle">
+          Vá além do marketing de captação. Transforme sua infraestrutura ociosa em um HUB de negócios com capital próprio para startups de alunos e pesquisa aplicada financiada pelo mercado.
+        </p>
+        <p class="hero-note">
+          Você não está vendendo educação. Está redesenhando o modelo de negócio da sua faculdade privada.
+        </p>
+
+        <div class="cta-row">
+          <button class="btn-primary" onclick="document.getElementById('cta-final').scrollIntoView({behavior: 'smooth'})">
+            Agendar conversa com a Reitoria
+          </button>
+          <button class="btn-secondary" onclick="document.getElementById('tese').scrollIntoView({behavior: 'smooth'})">
+            Entender a tese em 2 minutos
+          </button>
+        </div>
+
+        <div class="pill-row">
+          <div class="pill"><strong>Marketing</strong> que vira prova, não promessa</div>
+          <div class="pill"><strong>Campus</strong> como HUB de negócios</div>
+          <div class="pill"><strong>Equity</strong> para a instituição</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="hero-card">
+          <h2 class="hero-card-title">Os 3 sintomas da falência acadêmica privada</h2>
+          <p>
+            Nenhuma dúvida: o problema não é falta de alunos. É falta de modelo.
+          </p>
+          <ul>
+            <li><strong>Marketing Ineficiente:</strong> gasto em propaganda de promessa, sem prova real de sucesso.</li>
+            <li><strong>Medo do Diploma:</strong> alunos que retardam a formatura por medo do desemprego.</li>
+            <li><strong>Elefante Branco:</strong> campi caros, ociosos e sem função estratégica clara.</li>
+          </ul>
+        </div>
       </div>
     </div>
   </header>
 
-  <section class="problem-section">
-    <div class="container grid-2">
-      <div>
-        <h2 class="serif" style="font-size: 36px;">O Marketing tradicional <span class="gold-text">não salva</span> mais sua instituição.</h2>
-        <p style="color: var(--gray-400);">O custo de captação sobe, a evasão dispara e o campus físico torna-se um passivo imobiliário. Instituições sem campus perdem prestígio, mas campi vazios perdem dinheiro.</p>
-        
-        <div class="stat-box">
-          <span class="stat-num">Ociosidade Crítica</span>
-          <span>Campi subutilizados enquanto o ensino migra para o online.</span>
-        </div>
-        <div class="stat-box">
-          <span class="stat-num">Evasão por Formatura</span>
-          <span>Alunos que retardam a graduação por medo do desemprego.</span>
-        </div>
+  <main>
+    <!-- 2. A Tese -->
+    <section id="tese">
+      <div class="section-tag">A tese</div>
+      <h2>O diploma não é mais o destino final. O negócio é.</h2>
+      <p>
+        Faculdades privadas hoje enfrentam um paradoxo: marketing caro, campi ociosos e alunos que retardam a formatura por medo do desemprego. A TEMPUS quebra esse ciclo.
+      </p>
+      <div class="quote">
+        “Injetamos cultura empreendedora e linhas de crédito reais para empresas dentro da sua instituição.
+        Não formamos apenas profissionais. Formamos os próximos sócios da sua faculdade.”
       </div>
-      <div style="background: var(--gray-800); padding: 40px; border-radius: 8px;">
-        <h3 class="serif gold-text">Nossa Tese</h3>
-        <p>Inspirados no modelo de <strong>Stanford</strong>, substituímos o marketing de promessas por um ecossistema de geração de ativos. A TEMPUS injeta cultura empreendedora e opera <strong>linhas de crédito reais para startups</strong> de alunos, transformando a faculdade em sócia-investidora.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="solution-section">
-    <div class="container">
-      <h2 class="serif" style="text-align: center; font-size: 42px; margin-bottom: 60px;">O Novo Modelo de <span class="gold-text">Receita e Retenção</span></h2>
-      <div class="solution-grid">
-        <div class="solution-card">
-          <h3>Capital que Retém</h3>
-          <p>Operamos linhas de crédito para empresas (startups) fundadas no campus. O aluno fica para construir seu patrimônio, não apenas para ouvir aulas.</p>
+    <!-- 3. Os 3 Pilares do HUB -->
+    <section id="pilares">
+      <div class="section-tag">Os 3 pilares do HUB</div>
+      <h2>Do elefante branco ao ecossistema de venture</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Monetização do Espaço</h3>
+          <p>
+            O campus deixa de ser centro de custo e passa a ser o endereço oficial do HUB de pesquisa aplicada, corporate venture e testes de novos negócios de alunos e empresas parceiras.
+          </p>
         </div>
-        <div class="solution-card">
-          <h3>Pesquisa que Lucra</h3>
-          <p>Atraímos empresas e investidores privados para financiar pesquisa aplicada, eliminando a dependência de verbas governamentais.</p>
+        <div class="card">
+          <h3>Retenção por Ativos</h3>
+          <p>
+            O aluno não fica pela aula. Ele fica pelo negócio que está construindo, pelo crédito que está recebendo e pelo pipeline direto com empresas e investidores dentro da instituição.
+          </p>
         </div>
-        <div class="solution-card">
-          <h3>Ativos Imobiliários</h3>
-          <p>Convertemos laboratórios e salas ociosas em um HUB de negócios pulsante, recuperando o valor estratégico do seu campus físico.</p>
+        <div class="card">
+          <h3>Equity Institucional</h3>
+          <p>
+            A faculdade posiciona-se como sócia-investidora em negócios selecionados, abrindo uma nova linha de receita recorrente e alinhando marca, reputação e resultado financeiro.
+          </p>
         </div>
       </div>
-    </div>
-  </section>
+      <div class="highlight">
+        O campus físico ganha função imobiliária, comercial e simbólica que o online sozinho nunca vai conseguir replicar.
+      </div>
+    </section>
 
-  <section class="cta-final" id="contato">
-    <div class="container">
-      <h2 class="serif" style="font-size: 48px;">Uma decisão de <span class="gold-text">Posicionamento.</span></h2>
-      <p style="max-width: 600px; margin: 0 auto;">Este não é um projeto de marketing. É uma reengenharia do valor institucional. Falamos exclusivamente com Reitores, Pró-Reitores e Diretores Estratégicos.</p>
-      
-      <div class="form-minimal">
-        <form>
-          <div class="form-group">
-            <input type="text" placeholder="NOME COMPLETO" required>
-          </div>
-          <div class="form-group">
-            <input type="text" placeholder="CARGO (REITORIA / DIREÇÃO)" required>
-          </div>
-          <div class="form-group">
-            <input type="email" placeholder="E-MAIL INSTITUCIONAL" required>
-          </div>
-          <div class="form-group">
-            <select required>
-              <option value="" disabled selected>PRINCIPAL DESAFIO</option>
-              <option value="ociosidade">Ociosidade de Campus</option>
-              <option value="evasao">Evasão e Retenção</option>
-              <option value="novas-receitas">Novas Linhas de Receita (Equity)</option>
-              <option value="marca">Reputação e Excelência</option>
-            </select>
-          </div>
-          <div style="margin-top: 40px;">
-            <button type="submit" class="btn btn-gold">Solicitar Apresentação Executiva</button>
-          </div>
-        </form>
+    <!-- 4. Diferencial TEMPUS -->
+    <section id="diferencial">
+      <div class="section-tag">O diferencial TEMPUS</div>
+      <h2>The University Venture Model, operado de ponta a ponta</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Sem risco operacional</h3>
+          <p>
+            A TEMPUS desenha e opera a formação empreendedora, a curadoria de projetos e a estrutura de crédito específica para empresas de alunos e egressos.
+            A faculdade entra com a marca, o campus e o ecossistema.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Integração institucional</h3>
+          <p>
+            O programa se conecta a empresas juniores, núcleos de inovação, extensão, eixos de empregabilidade e indicadores de avaliação institucional – sem exigir ruptura de matriz.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Exclusividade estratégica</h3>
+          <p>
+            Este não é um programa de prateleira. É um reposicionamento de marca. Trabalhamos com instituições que querem liderar o mercado privado, não apenas competir por preço.
+          </p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- 5. CTA Final -->
+    <section id="cta-final" class="cta-section">
+      <div class="section-tag">Decisão estratégica</div>
+      <h2>Não é campanha publicitária. É redefinição de modelo.</h2>
+      <p>
+        Nossas parcerias são discutidas exclusivamente com Reitores, Mantenedores e Diretores de Estratégia.
+        Se a sua instituição está pronta para transformar o campus em HUB de venture, o próximo passo é uma conversa privada.
+      </p>
+
+      <form class="form">
+        <div class="form-row">
+          <div>
+            <label for="nome">Nome</label>
+            <input id="nome" type="text" placeholder="Seu nome" />
+          </div>
+          <div>
+            <label for="cargo">Cargo</label>
+            <input id="cargo" type="text" placeholder="Reitor, Mantenedor, Diretor..." />
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label for="instituicao">Instituição</label>
+            <input id="instituicao" type="text" placeholder="Nome da faculdade" />
+          </div>
+          <div>
+            <label for="whatsapp">WhatsApp</label>
+            <input id="whatsapp" type="tel" placeholder="(DDD) 00000-0000" />
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">
+            Solicitar reunião privada
+          </button>
+        </div>
+      </form>
+
+      <div class="highlight" style="margin-top:16px;">
+        O tempo de defender apenas preço acabou. Próximo movimento: provar que sua instituição também é dona dos negócios que ajuda a criar.
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <div class="container">
-      <p>TEMPUS | UNIVERSITY VENTURE MODEL © 2026. <br>Exclusivo para Instituições de Ensino Superior Privadas.</p>
-    </div>
+    © TEMPUS – The University Venture Model. Este formulário ainda não está conectado a um backend.
   </footer>
 
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('.menu');
+    const topbar = document.querySelector('.topbar');
+
+    if (toggle && menu && topbar) {
+      toggle.addEventListener('click', () => {
+        menu.classList.toggle('open');
+        topbar.classList.toggle('menu-open');
+      });
+
+      menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (menu.classList.contains('open')) {
+            menu.classList.remove('open');
+            topbar.classList.remove('menu-open');
+          }
+        });
+      });
+    }
+  </script>
 </body>
 </html>
