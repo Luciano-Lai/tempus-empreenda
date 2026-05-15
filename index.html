@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TEMPUS | O Futuro da Educação Superior</title>
+  <title>TEMPUS | Conhecimento que Conecta</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
 
     :root {
-      --primary-navy: #0c2d48; /* Azul profundo da imagem */
-      --accent-gold: #b8924e;  /* Dourado vibrante */
-      --bright-bg: #fdfdfd;    /* Fundo vibrante e limpo */
+      --primary-navy: #0c2d48; 
+      --accent-gold: #b8924e;  
+      --bright-bg: #fdfdfd;    
       --white: #ffffff;
       --text-gray: #4a5568;
       --serif: 'Playfair Display', serif;
       --sans: 'Inter', sans-serif;
     }
 
-    * { box-sizing: border-box; }
+    * { box-sizing: border-box; scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -25,48 +25,43 @@
       background-color: var(--bright-bg);
       color: var(--primary-navy);
       line-height: 1.6;
-      overflow-x: hidden;
     }
 
     .container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
 
-    /* Nav - Glassmorphism */
     nav {
       position: fixed;
       top: 0; width: 100%;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
       z-index: 1000;
-      padding: 15px 0;
+      padding: 12px 0;
       border-bottom: 1px solid rgba(12, 45, 72, 0.05);
     }
     .nav-content { display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-family: var(--serif); font-size: 26px; font-weight: 700; letter-spacing: 1px; color: var(--primary-navy); }
+    .logo img { height: 45px; display: block; }
 
-    /* Hero vibrante */
     .hero-section {
-      height: 90vh;
+      height: 85vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      background: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.1)), 
-                  url('SUA-IMAGEM-UPLOADED.jpg') center/cover no-repeat;
+      background: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.2)), 
+                  url('https://raw.githubusercontent.com/Tempus-Empreenda/site/main/image_ebcc17.jpg') center/cover no-repeat;
       margin-top: 60px;
     }
     .hero-box {
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.92);
       padding: 60px;
       border-radius: 4px;
-      backdrop-filter: blur(8px);
-      max-width: 850px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+      max-width: 900px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.08);
     }
-    .hero-tag { font-weight: 700; letter-spacing: 3px; font-size: 13px; color: var(--accent-gold); text-transform: uppercase; margin-bottom: 15px; display: block;}
-    .hero-section h1 { font-family: var(--serif); font-size: clamp(2.5rem, 4vw, 3.8rem); line-height: 1.1; margin: 0 0 25px 0; }
-    .hero-section p { font-size: 1.25rem; color: var(--text-gray); margin-bottom: 35px; font-weight: 300; }
+    .hero-tag { font-weight: 700; letter-spacing: 3px; font-size: 12px; color: var(--accent-gold); text-transform: uppercase; margin-bottom: 20px; display: block;}
+    .hero-section h1 { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.8rem); line-height: 1.1; margin: 0 0 25px 0; font-weight: 700; }
+    .hero-section p { font-size: 1.3rem; color: var(--text-gray); margin-bottom: 35px; font-weight: 400; max-width: 750px; margin-left: auto; margin-right: auto; }
 
-    /* Botão Vibrante */
     .btn {
       display: inline-block;
       padding: 18px 45px;
@@ -74,96 +69,85 @@
       text-transform: uppercase;
       letter-spacing: 2px;
       border-radius: 50px;
-      transition: all 0.4s ease;
+      transition: all 0.3s ease;
       cursor: pointer;
-      font-size: 13px;
       text-decoration: none;
+      font-size: 12px;
     }
-    .btn-navy { background: var(--primary-navy); color: var(--white); border: none; }
-    .btn-navy:hover { background: var(--accent-gold); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(184, 146, 78, 0.3); }
+    .btn-navy { background: var(--primary-navy); color: var(--white); }
+    .btn-navy:hover { background: var(--accent-gold); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(184, 146, 78, 0.2); }
 
-    /* Seção Teórica - Brilhante */
-    .bright-content { padding: 100px 0; background: var(--white); }
+    .section-padding { padding: 120px 0; }
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-    .serif-title { font-family: var(--serif); font-size: 42px; line-height: 1.2; margin-bottom: 30px; }
-    .accent-bar { width: 60px; height: 3px; background: var(--accent-gold); margin-bottom: 30px; }
-
-    /* Cards de Negócio */
+    .serif-title { font-family: var(--serif); font-size: 42px; line-height: 1.2; margin-bottom: 30px; color: var(--primary-navy); }
+    
     .hub-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px; }
     .hub-card { 
-      background: var(--bright-bg); 
-      padding: 40px; 
-      border-radius: 12px; 
-      border: 1px solid #edf2f7;
-      transition: all 0.3s;
+      background: var(--white); padding: 45px; border-radius: 4px; 
+      border: 1px solid #f0f0f0; transition: 0.4s;
     }
-    .hub-card:hover { transform: translateY(-10px); border-color: var(--accent-gold); box-shadow: 0 15px 35px rgba(0,0,0,0.05); }
-    .hub-card h3 { font-family: var(--serif); font-size: 22px; color: var(--primary-navy); margin-bottom: 15px; }
+    .hub-card:hover { border-color: var(--accent-gold); transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+    .hub-card h3 { font-family: var(--serif); font-size: 24px; margin-bottom: 15px; color: var(--primary-navy); }
 
-    /* Formulário Elegante */
-    .contact-section { padding: 120px 0; background: #f8fafc; }
-    .form-container { max-width: 700px; margin: 0 auto; background: var(--white); padding: 50px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
-    .form-group { margin-bottom: 25px; }
-    label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; color: var(--accent-gold); }
-    input, select, textarea { 
-      width: 100%; padding: 12px 0; border: none; border-bottom: 1px solid #e2e8f0; 
-      font-size: 16px; outline: none; transition: 0.3s; font-family: var(--sans);
-    }
-    input:focus { border-bottom-color: var(--primary-navy); }
+    .contact-section { background: #f9fbfd; padding: 120px 0; }
+    .form-container { max-width: 700px; margin: 0 auto; background: var(--white); padding: 60px; border-radius: 4px; box-shadow: 0 10px 40px rgba(0,0,0,0.03); }
+    .form-group { margin-bottom: 30px; }
+    label { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--accent-gold); display: block; margin-bottom: 10px; letter-spacing: 1px; }
+    input, select, textarea { width: 100%; padding: 12px 0; border: none; border-bottom: 1px solid #e2e8f0; outline: none; font-size: 16px; font-family: inherit; color: var(--primary-navy); }
+    input:focus { border-bottom-color: var(--accent-gold); }
 
-    footer { padding: 60px 0; text-align: center; font-size: 13px; color: var(--text-gray); border-top: 1px solid #edf2f7; }
+    footer { padding: 80px 0; text-align: center; background: var(--white); color: var(--text-gray); font-size: 14px; }
+    footer img { height: 40px; margin-bottom: 30px; }
 
-    @media (max-width: 768px) {
-      .grid-2, .hub-grid { grid-template-columns: 1fr; }
-      .hero-box { padding: 30px; }
-    }
+    @media (max-width: 992px) { .grid-2, .hub-grid { grid-template-columns: 1fr; } .hero-box { padding: 40px 20px; } }
   </style>
 </head>
 <body>
 
   <nav>
     <div class="container nav-content">
-      <div class="logo">TEMPUS</div>
-      <a href="#contato" class="btn btn-navy" style="padding: 10px 25px; font-size: 11px;">Consultoria Estratégica</a>
+      <div class="logo">
+        <img src="https://raw.githubusercontent.com/Tempus-Empreenda/site/main/TEMPUS%20-%20Consultoria.png" alt="TEMPUS">
+      </div>
+      <a href="#contato" class="btn btn-navy" style="padding: 12px 25px; font-size: 10px;">Consultoria Estratégica</a>
     </div>
   </nav>
 
   <section class="hero-section">
     <div class="hero-box">
-      <span class="hero-tag">Knowledge that Connects</span>
-      <h1 class="serif">Conectamos o Campus ao Coração do <span style="color: var(--accent-gold);">Mercado Global.</span></h1>
-      <p>Transformamos "elefantes brancos" em HUBs vibrantes de inovação. Financiamos as startups dos seus alunos e geramos o Vale do Silício dentro da sua faculdade.</p>
+      <span class="hero-tag">Conhecimento que Conecta</span>
+      <h1 class="serif">Sua Instituição como o próximo <br><span style="color: var(--accent-gold);">Vale do Silício Acadêmico.</span></h1>
+      <p>Elevamos o seu campus através do empreendedorismo de alto nível e linhas de crédito estruturadas para transformar projetos em negócios reais.</p>
       <a href="#contato" class="btn btn-navy">Agendar Conversa com a Reitoria</a>
     </div>
   </section>
 
-  <section class="bright-content">
+  <section class="section-padding">
     <div class="container">
       <div class="grid-2">
         <div>
-          <div class="accent-bar"></div>
-          <h2 class="serif-title">Por que as Faculdades Privadas ficaram de fora da <span style="color: var(--accent-gold);">Inovação?</span></h2>
-          <p>Enquanto as públicas dependem de verbas estatais, as privadas sentam-se sobre um oceano de talentos subutilizados. O custo de marketing sobe e a evasão assombra.</p>
-          <p><strong>Nossa solução é a inversão do modelo:</strong> O campus físico deixa de ser custo imobiliário para se tornar um ativo de pesquisa aplicada e geração de Equity.</p>
+          <h2 class="serif-title">Dê um novo propósito estratégico ao seu campus.</h2>
+          <p>Não permita que a infraestrutura física seja um custo passivo. O Programa Empreenda Tempus converte salas e auditórios em um <strong>HUB de negócios pulsante</strong>, onde a teoria encontra o capital.</p>
+          <p>Criamos o ecossistema completo para que seus alunos não apenas busquem o mercado, mas construam o próprio mercado com suporte financeiro e mentoria especializada.</p>
         </div>
-        <div style="background: #f1f5f9; padding: 40px; border-radius: 12px; border-left: 5px solid var(--accent-gold);">
-          <h3 class="serif" style="font-size: 28px; margin-top: 0;">O Modelo Stanford</h3>
-          <p>Não formamos apenas profissionais; construímos o mercado. Ao financiar startups de alunos (Linhas de Crédito para Empresas) e trazer investidores Alumni, sua marca deixa de vender diplomas para vender <strong>sucesso real.</strong></p>
+        <div style="background: #f8fafc; padding: 50px; border-radius: 4px; border-left: 6px solid var(--accent-gold);">
+          <h3 class="serif" style="font-size: 28px; margin-top: 0; color: var(--primary-navy);">Tese de Valor</h3>
+          <p>Unimos a excelência do seu ensino a linhas de crédito exclusivas para startups de alunos e egressos. Transformamos o diploma em um passaporte para o sucesso empresarial, gerando ativos e reputação para sua marca.</p>
         </div>
       </div>
 
       <div class="hub-grid">
         <div class="hub-card">
           <h3>Retenção por Ativos</h3>
-          <p>O aluno não permanece pelas aulas, mas pelo negócio que está construindo e pelo capital que está acessando através da TEMPUS.</p>
+          <p>Substituímos o marketing reativo por uma proposta de valor inquestionável: o aluno fica pelo negócio que está construindo.</p>
         </div>
         <div class="hub-card">
-          <h3>Campus Vivo</h3>
-          <p>Ocupamos espaços ociosos com SQUADS de pesquisa financiada por empresas privadas em busca de soluções reais.</p>
+          <h3>Campus Inteligente</h3>
+          <p>Otimização de espaços ociosos com SQUADS de inovação, oficinas práticas e interação real com o mercado privado.</p>
         </div>
         <div class="hub-card">
-          <h3>Faculdade Sócia</h3>
-          <p>Sua instituição participa do sucesso das startups nascidas no HUB, criando novas e poderosas linhas de receita recorrente.</p>
+          <h3>Equidade e Receita</h3>
+          <p>A faculdade se posiciona como parceira estratégica das empresas que nascem em seus laboratórios, criando novas linhas de valor.</p>
         </div>
       </div>
     </div>
@@ -171,33 +155,33 @@
 
   <section class="contact-section" id="contato">
     <div class="container">
-      <div style="text-align: center; margin-bottom: 50px;">
-        <h2 class="serif" style="font-size: 45px;">Vamos falar de <span style="color: var(--accent-gold);">Estratégia?</span></h2>
-        <p>Conversas exclusivas para Reitores e Mantenedores que buscam o próximo nível.</p>
+      <div style="text-align: center; margin-bottom: 60px;">
+        <h2 class="serif" style="font-size: 45px;">Diálogo <span style="color: var(--accent-gold);">Estratégico</span></h2>
+        <p>Apresentação exclusiva para Reitores, Mantenedores e Diretores de Inovação.</p>
       </div>
       
       <div class="form-container">
         <form>
           <div class="form-group">
-            <label>Nome do Decisor</label>
-            <input type="text" placeholder="Nome completo" required>
+            <label>Decisor Responsável</label>
+            <input type="text" placeholder="Seu nome e cargo" required>
           </div>
           <div class="form-group">
             <label>Instituição de Ensino</label>
-            <input type="text" placeholder="Ex: Grupo Educacional X" required>
+            <input type="text" placeholder="Nome do Grupo ou Faculdade" required>
           </div>
           <div class="form-group">
-            <label>Desafio Prioritário</label>
+            <label>Objetivo Principal</label>
             <select required>
-              <option value="" disabled selected>Selecione...</option>
-              <option value="ociosidade">Otimização de Campus Físico</option>
-              <option value="evasao">Retenção e Evasão Zero</option>
-              <option value="receita">Novas Fontes de Receita (Equity)</option>
-              <option value="pesquisa">Atração de Investimento Privado</option>
+              <option value="" disabled selected>Selecione uma prioridade...</option>
+              <option value="ociosidade">Otimizar Ativos Imobiliários (Campus)</option>
+              <option value="evasao">Reduzir Evasão via Geração de Renda</option>
+              <option value="posicionamento">Posicionamento de Marca e Elite</option>
+              <option value="startups">Criação de HUB de Startups e Crédito</option>
             </select>
           </div>
           <div style="text-align: center; margin-top: 40px;">
-            <button type="submit" class="btn btn-navy">Solicitar Reunião Estratégica</button>
+            <button type="submit" class="btn btn-navy">Solicitar Reunião com Consultoria</button>
           </div>
         </form>
       </div>
@@ -206,8 +190,8 @@
 
   <footer>
     <div class="container">
-      <div class="logo" style="margin-bottom: 20px;">TEMPUS</div>
-      <p>© 2026 TEMPUS Consultoria. Todos os direitos reservados. <br> Onde a Academia e o Mercado se tornam um só.</p>
+      <img src="https://raw.githubusercontent.com/Tempus-Empreenda/site/main/TEMPUS%20-%20Consultoria.png" alt="TEMPUS">
+      <p>© 2026 TEMPUS Consultoria | Programa Empreenda Tempus. <br> Onde o Conhecimento Conecta e o Capital Transforma.</p>
     </div>
   </footer>
 
