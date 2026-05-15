@@ -3,669 +3,213 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TEMPUS – The University Venture Model</title>
-  <meta name="description" content="Transforme seu campus em um Vale do Silício privado. TEMPUS: HUB de negócios, cultura empreendedora e crédito para startups de alunos em faculdades privadas." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+  <title>TEMPUS | O Futuro da Educação Superior</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+
     :root {
-      --bg: #05070b;
-      --bg-alt: #0b1018;
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --accent: #f5c859;   /* dourado fosco */
-      --accent-soft: rgba(245, 200, 89, 0.2);
-      --border: #1f2933;
-      --max-width: 1040px;
+      --primary-navy: #0c2d48; /* Azul profundo da imagem */
+      --accent-gold: #b8924e;  /* Dourado vibrante */
+      --bright-bg: #fdfdfd;    /* Fundo vibrante e limpo */
+      --white: #ffffff;
+      --text-gray: #4a5568;
+      --serif: 'Playfair Display', serif;
+      --sans: 'Inter', sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background-color: var(--bg);
+      font-family: var(--sans);
+      background-color: var(--bright-bg);
+      color: var(--primary-navy);
       line-height: 1.6;
-      scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
-    a {
-      color: inherit;
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
+
+    /* Nav - Glassmorphism */
+    nav {
+      position: fixed;
+      top: 0; width: 100%;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(12, 45, 72, 0.05);
+    }
+    .nav-content { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: var(--serif); font-size: 26px; font-weight: 700; letter-spacing: 1px; color: var(--primary-navy); }
+
+    /* Hero vibrante */
+    .hero-section {
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.1)), 
+                  url('SUA-IMAGEM-UPLOADED.jpg') center/cover no-repeat;
+      margin-top: 60px;
+    }
+    .hero-box {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 60px;
+      border-radius: 4px;
+      backdrop-filter: blur(8px);
+      max-width: 850px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+    }
+    .hero-tag { font-weight: 700; letter-spacing: 3px; font-size: 13px; color: var(--accent-gold); text-transform: uppercase; margin-bottom: 15px; display: block;}
+    .hero-section h1 { font-family: var(--serif); font-size: clamp(2.5rem, 4vw, 3.8rem); line-height: 1.1; margin: 0 0 25px 0; }
+    .hero-section p { font-size: 1.25rem; color: var(--text-gray); margin-bottom: 35px; font-weight: 300; }
+
+    /* Botão Vibrante */
+    .btn {
+      display: inline-block;
+      padding: 18px 45px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      border-radius: 50px;
+      transition: all 0.4s ease;
+      cursor: pointer;
+      font-size: 13px;
       text-decoration: none;
     }
+    .btn-navy { background: var(--primary-navy); color: var(--white); border: none; }
+    .btn-navy:hover { background: var(--accent-gold); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(184, 146, 78, 0.3); }
 
-    /* HEADER + NAV */
+    /* Seção Teórica - Brilhante */
+    .bright-content { padding: 100px 0; background: var(--white); }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .serif-title { font-family: var(--serif); font-size: 42px; line-height: 1.2; margin-bottom: 30px; }
+    .accent-bar { width: 60px; height: 3px; background: var(--accent-gold); margin-bottom: 30px; }
 
-    header {
-      background: radial-gradient(circle at top, #111827 0, #020308 55%);
-      color: var(--text);
-      padding: 0 16px 56px 16px;
+    /* Cards de Negócio */
+    .hub-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px; }
+    .hub-card { 
+      background: var(--bright-bg); 
+      padding: 40px; 
+      border-radius: 12px; 
+      border: 1px solid #edf2f7;
+      transition: all 0.3s;
     }
+    .hub-card:hover { transform: translateY(-10px); border-color: var(--accent-gold); box-shadow: 0 15px 35px rgba(0,0,0,0.05); }
+    .hub-card h3 { font-family: var(--serif); font-size: 22px; color: var(--primary-navy); margin-bottom: 15px; }
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(5, 7, 11, 0.96);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
+    /* Formulário Elegante */
+    .contact-section { padding: 120px 0; background: #f8fafc; }
+    .form-container { max-width: 700px; margin: 0 auto; background: var(--white); padding: 50px; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+    .form-group { margin-bottom: 25px; }
+    label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; color: var(--accent-gold); }
+    input, select, textarea { 
+      width: 100%; padding: 12px 0; border: none; border-bottom: 1px solid #e2e8f0; 
+      font-size: 16px; outline: none; transition: 0.3s; font-family: var(--sans);
     }
+    input:focus { border-bottom-color: var(--primary-navy); }
 
-    .nav {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 0;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .logo img {
-      height: 42px;
-      display: block;
-      border-radius: 4px;
-    }
-
-    .logo-text {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--muted);
-    }
-
-    .menu {
-      display: flex;
-      gap: 20px;
-      font-size: 0.9rem;
-    }
-
-    .menu a {
-      padding: 4px 0;
-      border-bottom: 2px solid transparent;
-      color: #d1d5db;
-    }
-
-    .menu a:hover {
-      border-bottom-color: var(--accent);
-      color: #f9fafb;
-    }
-
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: #e5e7eb;
-      cursor: pointer;
-      padding: 4px;
-    }
-
-    .menu-toggle span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      margin: 4px 0;
-      background: #e5e7eb;
-      transition: transform 0.2s ease, opacity 0.2s ease;
-    }
-
-    .menu-open .menu-toggle span:nth-child(1) {
-      transform: translateY(6px) rotate(45deg);
-    }
-
-    .menu-open .menu-toggle span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .menu-open .menu-toggle span:nth-child(3) {
-      transform: translateY(-6px) rotate(-45deg);
-    }
-
-    /* HERO */
-
-    .hero {
-      max-width: var(--max-width);
-      margin: 28px auto 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-      gap: 40px;
-      align-items: center;
-    }
-
-    .hero-main {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .hero-header {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-    }
-
-    .hero-logo img {
-      height: 64px;
-      display: block;
-      border-radius: 6px;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
-    }
-
-    .hero-tag {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--muted);
-      margin-bottom: 6px;
-    }
-
-    .hero-title {
-      font-family: "Playfair Display", serif;
-      font-size: clamp(2.1rem, 3.1vw, 2.9rem);
-      line-height: 1.1;
-    }
-
-    .hero-title span {
-      color: var(--accent);
-    }
-
-    .hero-subtitle {
-      font-size: 1rem;
-      color: #d1d5db;
-      max-width: 520px;
-    }
-
-    .hero-note {
-      font-size: 0.95rem;
-      color: var(--muted);
-      max-width: 520px;
-    }
-
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 8px;
-    }
-
-    .btn-primary {
-      padding: 12px 22px;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      font-size: 0.95rem;
-      font-weight: 600;
-      background: var(--accent);
-      color: #111827;
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    .btn-secondary {
-      padding: 11px 18px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(15, 23, 42, 0.7);
-      color: #e5e7eb;
-      cursor: pointer;
-      font-size: 0.9rem;
-    }
-
-    .hero-card {
-      background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.6));
-      border-radius: 18px;
-      padding: 22px 20px;
-      border: 1px solid var(--border);
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
-      font-size: 0.92rem;
-    }
-
-    .hero-card-title {
-      font-family: "Playfair Display", serif;
-      font-size: 1.1rem;
-      margin-top: 0;
-      margin-bottom: 10px;
-    }
-
-    .hero-card p {
-      margin: 0 0 12px 0;
-      color: #e5e7eb;
-    }
-
-    .hero-card ul {
-      margin: 8px 0 0 18px;
-      padding: 0;
-      color: #d1d5db;
-    }
-
-    /* SEÇÕES GERAIS */
-
-    main {
-      padding: 40px 16px 60px 16px;
-    }
-
-    section {
-      max-width: var(--max-width);
-      margin: 0 auto 40px auto;
-      background: linear-gradient(135deg, rgba(11, 16, 24, 0.96), rgba(5, 7, 11, 0.98));
-      border-radius: 14px;
-      padding: 22px 20px;
-      border: 1px solid var(--border);
-    }
-
-    section h2 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      font-family: "Playfair Display", serif;
-      font-size: 1.6rem;
-    }
-
-    section p {
-      margin: 0 0 10px 0;
-      color: var(--text);
-      font-size: 0.98rem;
-    }
-
-    .section-tag {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--muted);
-      margin-bottom: 6px;
-    }
-
-    .quote {
-      font-size: 0.98rem;
-      color: #e5e7eb;
-      border-left: 3px solid var(--accent);
-      padding-left: 14px;
-      margin-top: 8px;
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 4px;
-    }
-
-    .pill {
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--accent-soft);
-      background: rgba(15, 23, 42, 0.8);
-      color: var(--muted);
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-    }
-
-    .pill strong {
-      color: var(--accent);
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 16px;
-    }
-
-    .card {
-      padding: 14px 12px;
-      border-radius: 12px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid var(--border);
-      font-size: 0.94rem;
-    }
-
-    .card h3 {
-      margin: 0 0 6px 0;
-      font-size: 1rem;
-      color: var(--accent);
-      font-family: "Playfair Display", serif;
-    }
-
-    .highlight {
-      margin-top: 10px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      background: var(--accent-soft);
-      color: #f9fafb;
-      font-size: 0.95rem;
-    }
-
-    .cta-section {
-      text-align: center;
-    }
-
-    .cta-section p {
-      max-width: 620px;
-      margin: 0 auto 12px auto;
-      color: var(--muted);
-      font-size: 0.96rem;
-    }
-
-    /* FORMULÁRIO FINAL */
-
-    .form {
-      max-width: 520px;
-      margin: 18px auto 0 auto;
-      text-align: left;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-
-    .form label {
-      font-size: 0.8rem;
-      color: var(--muted);
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .form input {
-      width: 100%;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(15, 23, 42, 0.9);
-      color: var(--text);
-      font-size: 0.94rem;
-      font-family: inherit;
-    }
-
-    .form input::placeholder {
-      color: #6b7280;
-    }
-
-    .form-actions {
-      margin-top: 10px;
-      text-align: right;
-    }
-
-    footer {
-      padding: 20px 16px 28px 16px;
-      color: var(--muted);
-      font-size: 0.8rem;
-      text-align: center;
-      border-top: 1px solid #111827;
-      background: #020308;
-    }
+    footer { padding: 60px 0; text-align: center; font-size: 13px; color: var(--text-gray); border-top: 1px solid #edf2f7; }
 
     @media (max-width: 768px) {
-      .nav {
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      .menu {
-        width: 100%;
-        flex-direction: column;
-        gap: 4px;
-        margin-top: 4px;
-        display: none;
-        font-size: 0.85rem;
-      }
-
-      .menu.open {
-        display: flex;
-      }
-
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-        margin-top: 20px;
-      }
-
-      .hero-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .hero-logo img {
-        height: 56px;
-      }
-
-      .grid-3 {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .form-row {
-        grid-template-columns: minmax(0, 1fr);
-      }
+      .grid-2, .hub-grid { grid-template-columns: 1fr; }
+      .hero-box { padding: 30px; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <!-- Navbar fixa -->
-    <div class="topbar">
-      <div class="nav">
-        <div class="logo">
-          <img src="TEMPUS - Consultoria.png" alt="TEMPUS - Soluções Financeiras Inteligentes" />
-          <div class="logo-text">The University Venture Model</div>
-        </div>
-        <button class="menu-toggle" aria-label="Abrir menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <nav class="menu">
-          <a href="#tese">Tese</a>
-          <a href="#pilares">HUB</a>
-          <a href="#diferencial">Diferencial</a>
-          <a href="#cta-final">Reunião Privada</a>
-        </nav>
-      </div>
+
+  <nav>
+    <div class="container nav-content">
+      <div class="logo">TEMPUS</div>
+      <a href="#contato" class="btn btn-navy" style="padding: 10px 25px; font-size: 11px;">Consultoria Estratégica</a>
     </div>
+  </nav>
 
-    <!-- HERO -->
-    <div class="hero">
-      <div class="hero-main">
-        <div class="hero-header">
-          <div class="hero-logo">
-            <img src="TEMPUS - Consultoria.png" alt="TEMPUS - Soluções Financeiras Inteligentes" />
-          </div>
-          <div>
-            <div class="hero-tag">TEMPUS · Empreenda</div>
-            <h1 class="hero-title">
-              Transforme seu campus em um <span>Vale do Silício privado</span>.
-            </h1>
-          </div>
-        </div>
-
-        <p class="hero-subtitle">
-          Vá além do marketing de captação. Transforme sua infraestrutura ociosa em um HUB de negócios com capital próprio para startups de alunos e pesquisa aplicada financiada pelo mercado.
-        </p>
-        <p class="hero-note">
-          Você não está vendendo educação. Está redesenhando o modelo de negócio da sua faculdade privada.
-        </p>
-
-        <div class="cta-row">
-          <button class="btn-primary" onclick="document.getElementById('cta-final').scrollIntoView({behavior: 'smooth'})">
-            Agendar conversa com a Reitoria
-          </button>
-          <button class="btn-secondary" onclick="document.getElementById('tese').scrollIntoView({behavior: 'smooth'})">
-            Entender a tese em 2 minutos
-          </button>
-        </div>
-
-        <div class="pill-row">
-          <div class="pill"><strong>Marketing</strong> que vira prova, não promessa</div>
-          <div class="pill"><strong>Campus</strong> como HUB de negócios</div>
-          <div class="pill"><strong>Equity</strong> para a instituição</div>
-        </div>
-      </div>
-
-      <div>
-        <div class="hero-card">
-          <h2 class="hero-card-title">Os 3 sintomas da falência acadêmica privada</h2>
-          <p>
-            Nenhuma dúvida: o problema não é falta de alunos. É falta de modelo.
-          </p>
-          <ul>
-            <li><strong>Marketing Ineficiente:</strong> gasto em propaganda de promessa, sem prova real de sucesso.</li>
-            <li><strong>Medo do Diploma:</strong> alunos que retardam a formatura por medo do desemprego.</li>
-            <li><strong>Elefante Branco:</strong> campi caros, ociosos e sem função estratégica clara.</li>
-          </ul>
-        </div>
-      </div>
+  <section class="hero-section">
+    <div class="hero-box">
+      <span class="hero-tag">Knowledge that Connects</span>
+      <h1 class="serif">Conectamos o Campus ao Coração do <span style="color: var(--accent-gold);">Mercado Global.</span></h1>
+      <p>Transformamos "elefantes brancos" em HUBs vibrantes de inovação. Financiamos as startups dos seus alunos e geramos o Vale do Silício dentro da sua faculdade.</p>
+      <a href="#contato" class="btn btn-navy">Agendar Conversa com a Reitoria</a>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <!-- 2. A Tese -->
-    <section id="tese">
-      <div class="section-tag">A tese</div>
-      <h2>O diploma não é mais o destino final. O negócio é.</h2>
-      <p>
-        Faculdades privadas hoje enfrentam um paradoxo: marketing caro, campi ociosos e alunos que retardam a formatura por medo do desemprego. A TEMPUS quebra esse ciclo.
-      </p>
-      <div class="quote">
-        “Injetamos cultura empreendedora e linhas de crédito reais para empresas dentro da sua instituição.
-        Não formamos apenas profissionais. Formamos os próximos sócios da sua faculdade.”
-      </div>
-    </section>
-
-    <!-- 3. Os 3 Pilares do HUB -->
-    <section id="pilares">
-      <div class="section-tag">Os 3 pilares do HUB</div>
-      <h2>Do elefante branco ao ecossistema de venture</h2>
-      <div class="grid-3">
-        <div class="card">
-          <h3>Monetização do Espaço</h3>
-          <p>
-            O campus deixa de ser centro de custo e passa a ser o endereço oficial do HUB de pesquisa aplicada, corporate venture e testes de novos negócios de alunos e empresas parceiras.
-          </p>
+  <section class="bright-content">
+    <div class="container">
+      <div class="grid-2">
+        <div>
+          <div class="accent-bar"></div>
+          <h2 class="serif-title">Por que as Faculdades Privadas ficaram de fora da <span style="color: var(--accent-gold);">Inovação?</span></h2>
+          <p>Enquanto as públicas dependem de verbas estatais, as privadas sentam-se sobre um oceano de talentos subutilizados. O custo de marketing sobe e a evasão assombra.</p>
+          <p><strong>Nossa solução é a inversão do modelo:</strong> O campus físico deixa de ser custo imobiliário para se tornar um ativo de pesquisa aplicada e geração de Equity.</p>
         </div>
-        <div class="card">
+        <div style="background: #f1f5f9; padding: 40px; border-radius: 12px; border-left: 5px solid var(--accent-gold);">
+          <h3 class="serif" style="font-size: 28px; margin-top: 0;">O Modelo Stanford</h3>
+          <p>Não formamos apenas profissionais; construímos o mercado. Ao financiar startups de alunos (Linhas de Crédito para Empresas) e trazer investidores Alumni, sua marca deixa de vender diplomas para vender <strong>sucesso real.</strong></p>
+        </div>
+      </div>
+
+      <div class="hub-grid">
+        <div class="hub-card">
           <h3>Retenção por Ativos</h3>
-          <p>
-            O aluno não fica pela aula. Ele fica pelo negócio que está construindo, pelo crédito que está recebendo e pelo pipeline direto com empresas e investidores dentro da instituição.
-          </p>
+          <p>O aluno não permanece pelas aulas, mas pelo negócio que está construindo e pelo capital que está acessando através da TEMPUS.</p>
         </div>
-        <div class="card">
-          <h3>Equity Institucional</h3>
-          <p>
-            A faculdade posiciona-se como sócia-investidora em negócios selecionados, abrindo uma nova linha de receita recorrente e alinhando marca, reputação e resultado financeiro.
-          </p>
+        <div class="hub-card">
+          <h3>Campus Vivo</h3>
+          <p>Ocupamos espaços ociosos com SQUADS de pesquisa financiada por empresas privadas em busca de soluções reais.</p>
         </div>
-      </div>
-      <div class="highlight">
-        O campus físico ganha função imobiliária, comercial e simbólica que o online sozinho nunca vai conseguir replicar.
-      </div>
-    </section>
-
-    <!-- 4. Diferencial TEMPUS -->
-    <section id="diferencial">
-      <div class="section-tag">O diferencial TEMPUS</div>
-      <h2>The University Venture Model, operado de ponta a ponta</h2>
-      <div class="grid-3">
-        <div class="card">
-          <h3>Sem risco operacional</h3>
-          <p>
-            A TEMPUS desenha e opera a formação empreendedora, a curadoria de projetos e a estrutura de crédito específica para empresas de alunos e egressos.
-            A faculdade entra com a marca, o campus e o ecossistema.
-          </p>
-        </div>
-        <div class="card">
-          <h3>Integração institucional</h3>
-          <p>
-            O programa se conecta a empresas juniores, núcleos de inovação, extensão, eixos de empregabilidade e indicadores de avaliação institucional – sem exigir ruptura de matriz.
-          </p>
-        </div>
-        <div class="card">
-          <h3>Exclusividade estratégica</h3>
-          <p>
-            Este não é um programa de prateleira. É um reposicionamento de marca. Trabalhamos com instituições que querem liderar o mercado privado, não apenas competir por preço.
-          </p>
+        <div class="hub-card">
+          <h3>Faculdade Sócia</h3>
+          <p>Sua instituição participa do sucesso das startups nascidas no HUB, criando novas e poderosas linhas de receita recorrente.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- 5. CTA Final -->
-    <section id="cta-final" class="cta-section">
-      <div class="section-tag">Decisão estratégica</div>
-      <h2>Não é campanha publicitária. É redefinição de modelo.</h2>
-      <p>
-        Nossas parcerias são discutidas exclusivamente com Reitores, Mantenedores e Diretores de Estratégia.
-        Se a sua instituição está pronta para transformar o campus em HUB de venture, o próximo passo é uma conversa privada.
-      </p>
-
-      <form class="form">
-        <div class="form-row">
-          <div>
-            <label for="nome">Nome</label>
-            <input id="nome" type="text" placeholder="Seu nome" />
-          </div>
-          <div>
-            <label for="cargo">Cargo</label>
-            <input id="cargo" type="text" placeholder="Reitor, Mantenedor, Diretor..." />
-          </div>
-        </div>
-        <div class="form-row">
-          <div>
-            <label for="instituicao">Instituição</label>
-            <input id="instituicao" type="text" placeholder="Nome da faculdade" />
-          </div>
-          <div>
-            <label for="whatsapp">WhatsApp</label>
-            <input id="whatsapp" type="tel" placeholder="(DDD) 00000-0000" />
-          </div>
-        </div>
-        <div class="form-actions">
-          <button type="submit" class="btn-primary">
-            Solicitar reunião privada
-          </button>
-        </div>
-      </form>
-
-      <div class="highlight" style="margin-top:16px;">
-        O tempo de defender apenas preço acabou. Próximo movimento: provar que sua instituição também é dona dos negócios que ajuda a criar.
+  <section class="contact-section" id="contato">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 50px;">
+        <h2 class="serif" style="font-size: 45px;">Vamos falar de <span style="color: var(--accent-gold);">Estratégia?</span></h2>
+        <p>Conversas exclusivas para Reitores e Mantenedores que buscam o próximo nível.</p>
       </div>
-    </section>
-  </main>
+      
+      <div class="form-container">
+        <form>
+          <div class="form-group">
+            <label>Nome do Decisor</label>
+            <input type="text" placeholder="Nome completo" required>
+          </div>
+          <div class="form-group">
+            <label>Instituição de Ensino</label>
+            <input type="text" placeholder="Ex: Grupo Educacional X" required>
+          </div>
+          <div class="form-group">
+            <label>Desafio Prioritário</label>
+            <select required>
+              <option value="" disabled selected>Selecione...</option>
+              <option value="ociosidade">Otimização de Campus Físico</option>
+              <option value="evasao">Retenção e Evasão Zero</option>
+              <option value="receita">Novas Fontes de Receita (Equity)</option>
+              <option value="pesquisa">Atração de Investimento Privado</option>
+            </select>
+          </div>
+          <div style="text-align: center; margin-top: 40px;">
+            <button type="submit" class="btn btn-navy">Solicitar Reunião Estratégica</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
 
   <footer>
-    © TEMPUS – The University Venture Model. Este formulário ainda não está conectado a um backend.
+    <div class="container">
+      <div class="logo" style="margin-bottom: 20px;">TEMPUS</div>
+      <p>© 2026 TEMPUS Consultoria. Todos os direitos reservados. <br> Onde a Academia e o Mercado se tornam um só.</p>
+    </div>
   </footer>
 
-  <script>
-    const toggle = document.querySelector('.menu-toggle');
-    const menu = document.querySelector('.menu');
-    const topbar = document.querySelector('.topbar');
-
-    if (toggle && menu && topbar) {
-      toggle.addEventListener('click', () => {
-        menu.classList.toggle('open');
-        topbar.classList.toggle('menu-open');
-      });
-
-      menu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          if (menu.classList.contains('open')) {
-            menu.classList.remove('open');
-            topbar.classList.remove('menu-open');
-          }
-        });
-      });
-    }
-  </script>
 </body>
 </html>
