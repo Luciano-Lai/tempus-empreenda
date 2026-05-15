@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
->
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,6 +25,7 @@
       color: var(--text);
       background-color: var(--bg);
       line-height: 1.5;
+      scroll-behavior: smooth;
     }
 
     a {
@@ -36,15 +36,26 @@
     header {
       background: linear-gradient(135deg, #0c1f35, #1b395b);
       color: #ffffff;
-      padding: 24px 16px 48px 16px;
+      padding: 0 16px 48px 16px;
+    }
+
+    /* barra fixa no topo */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 18, 32, 0.96);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid #1f2937;
     }
 
     .nav {
       max-width: var(--max-width);
-      margin: 0 auto 32px auto;
+      margin: 0 auto;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: space-between;
+      padding: 8px 0;
     }
 
     .logo {
@@ -53,22 +64,87 @@
     }
 
     .logo img {
-      height: 44px; /* ajuste se quiser maior/menor */
+      height: 40px;
       display: block;
+    }
+
+    /* menu desktop */
+    .menu {
+      display: flex;
+      gap: 16px;
+      font-size: 0.9rem;
+    }
+
+    .menu a {
+      color: #e5e7eb;
+      text-decoration: none;
+      padding: 6px 0;
+      border-bottom: 2px solid transparent;
+    }
+
+    .menu a:hover {
+      border-bottom-color: var(--secondary);
+    }
+
+    /* botão hamburger (mobile) */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: #e5e7eb;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      margin: 4px 0;
+      background: #e5e7eb;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .menu-open .menu-toggle span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+
+    .menu-open .menu-toggle span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-open .menu-toggle span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
     }
 
     .hero {
       max-width: var(--max-width);
-      margin: 0 auto;
+      margin: 24px auto 0 auto;
       display: grid;
       grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
       gap: 32px;
       align-items: center;
     }
 
-    .hero h1 {
+    .hero-main {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .hero-logo img {
+      height: 56px;
+      display: block;
+    }
+
+    .hero-text h1 {
+      margin: 4px 0 0 0;
       font-size: clamp(2rem, 3vw, 2.7rem);
-      margin: 0 0 16px 0;
     }
 
     .hero p {
@@ -78,8 +154,17 @@
 
     .hero-subtitle {
       font-size: 1.05rem;
+      margin-top: 12px;
       margin-bottom: 16px;
       color: #e7edf5;
+    }
+
+    .hero-tag {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #c1cee1;
+      margin-bottom: 4px;
     }
 
     .cta-row {
@@ -109,14 +194,6 @@
       font-weight: 500;
       cursor: pointer;
       font-size: 0.95rem;
-    }
-
-    .hero-tag {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #c1cee1;
-      margin-bottom: 8px;
     }
 
     .hero-card {
@@ -290,42 +367,84 @@
     }
 
     @media (max-width: 768px) {
+      .nav {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .menu {
+        width: 100%;
+        flex-direction: column;
+        gap: 4px;
+        margin-top: 4px;
+        display: none;
+      }
+
+      .menu.open {
+        display: flex;
+      }
+
+      .menu a {
+        padding: 6px 0;
+      }
+
       .hero {
         grid-template-columns: minmax(0, 1fr);
+        margin-top: 16px;
       }
 
-      section {
-        margin-bottom: 28px;
-        padding: 20px 16px;
+      .hero-header {
+        flex-direction: column;
+        align-items: flex-start;
       }
 
-      .grid,
-      .grid-3 {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .form-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .form-grid textarea {
-        grid-column: span 1;
+      .hero-logo img {
+        height: 48px;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="nav">
-      <div class="logo">
-        <!-- certifique-se de que o arquivo está na raiz do repo com esse nome -->
-        <img src="TEMPUS - Consultoria.png" alt="TEMPUS - Soluções Financeiras Inteligentes" />
+    <!-- Navbar fixa -->
+    <div class="topbar">
+      <div class="nav">
+        <div class="logo">
+          <img src="TEMPUS - Consultoria.png" alt="TEMPUS - Soluções Financeiras Inteligentes" />
+        </div>
+        <button class="menu-toggle" aria-label="Abrir menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="menu">
+          <a href="#para-quem">Para quem é</a>
+          <a href="#problema">Problema</a>
+          <a href="#proposta">Proposta</a>
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#hub">Campus vivo</a>
+          <a href="#contato">Contato</a>
+        </nav>
       </div>
     </div>
+
+    <!-- HERO com logo + título lado a lado -->
     <div class="hero">
-      <div>
-        <div class="hero-tag">Programa Empreenda Tempus</div>
-        <h1>Empreendedorismo + crédito estudantil para fortalecer sua instituição</h1>
+      <div class="hero-main">
+        <div class="hero-header">
+          <div class="hero-logo">
+            <img src="TEMPUS - Consultoria.png" alt="TEMPUS - Soluções Financeiras Inteligentes" />
+          </div>
+          <div class="hero-text">
+            <div class="hero-tag">Programa Empreenda Tempus</div>
+            <h1>Empreendedorismo + crédito estudantil para fortalecer sua instituição</h1>
+          </div>
+        </div>
+
         <p class="hero-subtitle">
           Uma solução estratégica para reduzir evasão, valorizar o campus físico e conectar seus alunos ao mercado, indo além das campanhas de marketing tradicionais.
         </p>
@@ -341,6 +460,7 @@
           </button>
         </div>
       </div>
+
       <div>
         <div class="hero-card">
           <h2>Por que falar com a TEMPUS?</h2>
@@ -642,5 +762,28 @@
     <div>© TEMPUS Consultoria – Programa Empreenda Tempus.</div>
     <div class="muted">Site em desenvolvimento. Este formulário ainda não envia os dados para um backend.</div>
   </footer>
+
+  <script>
+    const toggle = document.querySelector('.menu-toggle');
+    const menu = document.querySelector('.menu');
+    const topbar = document.querySelector('.topbar');
+
+    if (toggle && menu && topbar) {
+      toggle.addEventListener('click', () => {
+        menu.classList.toggle('open');
+        topbar.classList.toggle('menu-open');
+      });
+
+      // Fecha o menu quando clica em algum link (mobile)
+      menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (menu.classList.contains('open')) {
+            menu.classList.remove('open');
+            topbar.classList.remove('menu-open');
+          }
+        });
+      });
+    }
+  </script>
 </body>
 </html>
