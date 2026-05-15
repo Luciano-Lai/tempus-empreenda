@@ -3,787 +3,227 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Programa Empreenda Tempus</title>
-  <meta name="description" content="Programa Empreenda Tempus: empreendedorismo + crédito estudantil para fortalecer faculdades privadas, reduzir evasão e atrair empresas e investidores." />
+  <title>TEMPUS | University Venture Model</title>
   <style>
     :root {
-      --primary: #1b395b;
-      --secondary: #f4b000;
-      --bg: #f7f7fb;
-      --text: #222222;
-      --muted: #666666;
-      --max-width: 1040px;
+      --gold: #c5a059;
+      --gold-dark: #a68545;
+      --black: #0a0a0a;
+      --gray-900: #121212;
+      --gray-800: #1a1a1a;
+      --gray-400: #a1a1aa;
+      --white: #ffffff;
+      --serif: 'Playfair Display', serif;
+      --sans: 'Inter', system-ui, sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background-color: var(--bg);
-      line-height: 1.5;
-      scroll-behavior: smooth;
+      font-family: var(--sans);
+      background-color: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    /* Utilitários de Luxo */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .gold-text { color: var(--gold); }
+    .serif { font-family: var(--serif); }
 
+    /* Header & Nav */
     header {
-      background: linear-gradient(135deg, #0c1f35, #1b395b);
-      color: #ffffff;
-      padding: 0 16px 48px 16px;
+      padding: 120px 0 80px;
+      background: radial-gradient(circle at top right, #1a1a1a 0%, #0a0a0a 100%);
     }
 
-    /* barra fixa no topo */
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(10, 18, 32, 0.96);
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid #1f2937;
+    nav {
+      position: fixed;
+      top: 0; width: 100%;
+      background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 20px 0;
     }
 
-    .nav {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 8px 0;
+    .nav-content { display: flex; justify-content: space-between; align-items: center; }
+    .logo-text { font-family: var(--serif); font-size: 24px; letter-spacing: 2px; font-weight: 700; }
+
+    /* Hero Section */
+    .hero { text-align: center; max-width: 900px; margin: 0 auto; }
+    .hero-tag { 
+      font-size: 12px; text-transform: uppercase; letter-spacing: 4px; 
+      color: var(--gold); margin-bottom: 20px; font-weight: 600;
+    }
+    .hero h1 { 
+      font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; 
+      margin-bottom: 30px; font-weight: 700;
+    }
+    .hero p { 
+      font-size: 1.2rem; color: var(--gray-400); 
+      max-width: 700px; margin: 0 auto 40px; font-weight: 300;
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-    }
-
-    .logo img {
-      height: 40px;
-      display: block;
-    }
-
-    /* menu desktop */
-    .menu {
-      display: flex;
-      gap: 16px;
-      font-size: 0.9rem;
-    }
-
-    .menu a {
-      color: #e5e7eb;
-      text-decoration: none;
-      padding: 6px 0;
-      border-bottom: 2px solid transparent;
-    }
-
-    .menu a:hover {
-      border-bottom-color: var(--secondary);
-    }
-
-    /* botão hamburger (mobile) */
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: #e5e7eb;
-      cursor: pointer;
-      padding: 4px;
-    }
-
-    .menu-toggle span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      margin: 4px 0;
-      background: #e5e7eb;
-      transition: transform 0.2s ease, opacity 0.2s ease;
-    }
-
-    .menu-open .menu-toggle span:nth-child(1) {
-      transform: translateY(6px) rotate(45deg);
-    }
-
-    .menu-open .menu-toggle span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .menu-open .menu-toggle span:nth-child(3) {
-      transform: translateY(-6px) rotate(-45deg);
-    }
-
-    .hero {
-      max-width: var(--max-width);
-      margin: 24px auto 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-      gap: 32px;
-      align-items: center;
-    }
-
-    .hero-main {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .hero-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .hero-logo img {
-      height: 56px;
-      display: block;
-    }
-
-    .hero-text h1 {
-      margin: 4px 0 0 0;
-      font-size: clamp(2rem, 3vw, 2.7rem);
-    }
-
-    .hero p {
-      margin: 0 0 20px 0;
-      color: #e0e6f0;
-    }
-
-    .hero-subtitle {
-      font-size: 1.05rem;
-      margin-top: 12px;
-      margin-bottom: 16px;
-      color: #e7edf5;
-    }
-
-    .hero-tag {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #c1cee1;
-      margin-bottom: 4px;
-    }
-
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 8px;
-    }
-
-    .btn-primary {
-      padding: 12px 20px;
-      border-radius: 999px;
-      background-color: var(--secondary);
-      color: #1b1b1b;
-      font-weight: 600;
-      border: none;
-      cursor: pointer;
-      font-size: 0.95rem;
-    }
-
-    .btn-secondary {
-      padding: 11px 18px;
-      border-radius: 999px;
-      border: 1px solid #ffffff88;
-      background: transparent;
-      color: #ffffff;
-      font-weight: 500;
-      cursor: pointer;
-      font-size: 0.95rem;
-    }
-
-    .hero-card {
-      background: #142439;
-      border-radius: 16px;
-      padding: 20px;
-      color: #e7edf5;
-      font-size: 0.9rem;
-      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
-    }
-
-    .hero-card h2 {
-      font-size: 1rem;
-      margin-top: 0;
-      margin-bottom: 8px;
-    }
-
-    .hero-card p {
-      margin: 0 0 8px 0;
-      color: #d4dde9;
-    }
-
-    .hero-card ul {
-      margin: 8px 0 0 20px;
-      padding: 0;
-    }
-
-    main {
-      padding: 40px 16px 48px 16px;
-    }
-
-    section {
-      max-width: var(--max-width);
-      margin: 0 auto 40px auto;
-      background: #ffffff;
-      border-radius: 12px;
-      padding: 24px 20px;
-      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
-    }
-
-    section h2 {
-      margin-top: 0;
-      margin-bottom: 12px;
-      font-size: 1.4rem;
-      color: var(--primary);
-    }
-
-    section p {
-      margin: 0 0 10px 0;
-      color: var(--text);
-      font-size: 0.98rem;
-    }
-
-    .muted {
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    ul, ol {
-      margin: 8px 0 0 20px;
-      padding: 0;
-      font-size: 0.96rem;
-    }
-
-    li {
-      margin-bottom: 4px;
-    }
-
-    .pill {
+    .btn {
       display: inline-block;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: #eef2ff;
-      color: #3730a3;
-      font-size: 0.78rem;
+      padding: 18px 40px;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.09em;
-      margin-bottom: 6px;
+      letter-spacing: 2px;
+      border-radius: 4px;
+      transition: all 0.3s;
+      cursor: pointer;
+      font-size: 13px;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 12px;
-    }
+    .btn-gold { background: var(--gold); color: var(--black); border: none; }
+    .btn-gold:hover { background: var(--gold-dark); transform: translateY(-2px); }
 
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      margin-top: 12px;
-    }
+    /* Seção Agressiva (The Problem) */
+    .problem-section { padding: 100px 0; background: var(--gray-900); }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .stat-box { border-left: 2px solid var(--gold); padding-left: 20px; margin-bottom: 30px; }
+    .stat-num { font-size: 32px; font-weight: 700; color: var(--gold); display: block; }
 
-    .card {
-      padding: 14px 12px;
-      border-radius: 10px;
-      background: #f9fafb;
-      border: 1px solid #e5e7eb;
-      font-size: 0.94rem;
+    /* Seção Solução (O Vale do Silício Brasileiro) */
+    .solution-section { padding: 100px 0; }
+    .solution-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+    .solution-card { 
+      background: var(--gray-800); padding: 40px; border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.03); transition: 0.3s;
     }
+    .solution-card:hover { border-color: var(--gold); }
+    .solution-card h3 { font-family: var(--serif); font-size: 24px; margin-bottom: 15px; }
 
-    .card h3 {
-      margin: 0 0 6px 0;
-      font-size: 1rem;
-      color: #111827;
+    /* Footer / CTA */
+    .cta-final { 
+      padding: 120px 0; text-align: center; 
+      background: linear-gradient(to bottom, #0a0a0a, #1a1a1a);
     }
+    .form-minimal { max-width: 600px; margin: 40px auto; }
+    .form-group { margin-bottom: 20px; }
+    input, select, textarea {
+      width: 100%; background: transparent; border: none; 
+      border-bottom: 1px solid #333; color: white; padding: 15px 0;
+      font-size: 16px; outline: none; transition: 0.3s;
+    }
+    input:focus { border-bottom-color: var(--gold); }
 
-    .highlight {
-      background: #fef3c7;
-      border-left: 4px solid #f59e0b;
-      padding: 10px 12px;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      margin-top: 8px;
-    }
-
-    .cta-section {
-      text-align: center;
-    }
-
-    .cta-section p {
-      max-width: 640px;
-      margin: 0 auto 16px auto;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      max-width: 640px;
-      margin: 16px auto 0 auto;
-      text-align: left;
-    }
-
-    .form-grid label {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: #374151;
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .form-grid input,
-    .form-grid select,
-    .form-grid textarea {
-      width: 100%;
-      padding: 8px 10px;
-      border-radius: 8px;
-      border: 1px solid #d1d5db;
-      font-size: 0.95rem;
-      font-family: inherit;
-    }
-
-    .form-grid textarea {
-      resize: vertical;
-      min-height: 80px;
-      grid-column: span 2;
-    }
-
-    footer {
-      padding: 24px 16px 32px 16px;
-      color: #6b7280;
-      font-size: 0.82rem;
-      text-align: center;
-    }
-
-    footer a {
-      color: #4f46e5;
-    }
+    footer { padding: 40px 0; border-top: 1px solid #1a1a1a; font-size: 12px; color: #444; text-align: center; }
 
     @media (max-width: 768px) {
-      .nav {
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      .menu {
-        width: 100%;
-        flex-direction: column;
-        gap: 4px;
-        margin-top: 4px;
-        display: none;
-      }
-
-      .menu.open {
-        display: flex;
-      }
-
-      .menu a {
-        padding: 6px 0;
-      }
-
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-        margin-top: 16px;
-      }
-
-      .hero-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .hero-logo img {
-        height: 48px;
-      }
+      .grid-2, .solution-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.5rem; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <!-- Navbar fixa -->
-    <div class="topbar">
-      <div class="nav">
-        <div class="logo">
-          <img src="TEMPUS - Consultoria.png" alt="TEMPUS - Soluções Financeiras Inteligentes" />
-        </div>
-        <button class="menu-toggle" aria-label="Abrir menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <nav class="menu">
-          <a href="#para-quem">Para quem é</a>
-          <a href="#problema">Problema</a>
-          <a href="#proposta">Proposta</a>
-          <a href="#como-funciona">Como funciona</a>
-          <a href="#hub">Campus vivo</a>
-          <a href="#contato">Contato</a>
-        </nav>
+
+  <nav>
+    <div class="container nav-content">
+      <div class="logo-text">TEMPUS</div>
+      <div class="nav-links">
+        <button class="btn btn-gold" onclick="document.getElementById('contato').scrollIntoView()">Consultoria Estratégica</button>
       </div>
     </div>
+  </nav>
 
-    <!-- HERO com logo + título lado a lado -->
-    <div class="hero">
-      <div class="hero-main">
-        <div class="hero-header">
-          <div class="hero-logo">
-            <img src="TEMPUS - Consultoria.png" alt="TEMPUS - Soluções Financeiras Inteligentes" />
-          </div>
-          <div class="hero-text">
-            <div class="hero-tag">Programa Empreenda Tempus</div>
-            <h1>Empreendedorismo + crédito estudantil para fortalecer sua instituição</h1>
-          </div>
-        </div>
-
-        <p class="hero-subtitle">
-          Uma solução estratégica para reduzir evasão, valorizar o campus físico e conectar seus alunos ao mercado, indo além das campanhas de marketing tradicionais.
-        </p>
-        <p>
-          Transformamos o seu campus em um HUB de negócios, onde alunos de todos os cursos desenvolvem soluções reais, atraem empresas e investidores e têm acesso a linhas de crédito específicas para tirar seus projetos do papel.
-        </p>
-        <div class="cta-row">
-          <button class="btn-primary" onclick="document.getElementById('contato').scrollIntoView({behavior: 'smooth'})">
-            Agendar conversa com a Reitoria
-          </button>
-          <button class="btn-secondary">
-            Receber resumo executivo em PDF
-          </button>
-        </div>
-      </div>
-
-      <div>
-        <div class="hero-card">
-          <h2>Por que falar com a TEMPUS?</h2>
-          <p>Porque marketing sozinho não resolve evasão, empregabilidade nem reputação. Você precisa de um programa que:</p>
-          <ul>
-            <li>forme empreendedores em todos os cursos;</li>
-            <li>ofereça linhas de crédito para projetos reais;</li>
-            <li>traga empresas e investidores para dentro do campus.</li>
-          </ul>
-        </div>
+  <header>
+    <div class="container hero">
+      <span class="hero-tag">University Venture Model</span>
+      <h1 class="serif">O Diploma não é mais o destino. <span class="gold-text">O negócio é.</span></h1>
+      <p>Transforme seus elefantes brancos em HUBs de inovação. Financiamos as startups dos seus alunos e geramos o Vale do Silício dentro do seu campus.</p>
+      <div class="cta-row">
+        <button class="btn btn-gold" onclick="document.getElementById('contato').scrollIntoView()">Agendar Reunião com a Reitoria</button>
       </div>
     </div>
   </header>
 
-  <main>
-    <section id="para-quem">
-      <span class="pill">Para quem é</span>
-      <h2>Feito para quem decide o futuro da faculdade</h2>
-      <p>
-        O Programa Empreenda Tempus foi desenhado para reitores, pró‑reitores e diretores que:
-      </p>
-      <ul>
-        <li>Precisam reduzir evasão e inadimplência sem apenas aumentar o orçamento de mídia.</li>
-        <li>Querem que o campus seja um ativo vivo da marca, não apenas um custo fixo.</li>
-        <li>Buscam resultados concretos em empregabilidade, renda, pesquisa aplicada e inovação.</li>
-        <li>Entendem que empreendedorismo é para todos os cursos, não só para Administração ou Negócios.</li>
-      </ul>
-    </section>
-
-    <section id="problema">
-      <span class="pill">O problema</span>
-      <h2>Marketing atrai. Quem retém e entrega valor?</h2>
-      <p>
-        Faculdades privadas investiram pesado em campanhas de captação e em tecnologias de controle, como sistemas e aplicativos que monitoram presença e disparam alertas quando o aluno para de frequentar as aulas. Quando a instituição age rápido, muitas desistências são revertidas antes da reprovação por faltas.
-      </p>
-      <p>
-        Isso mostra que dados e tecnologia ajudam, mas são essencialmente reativos. O marketing traz o aluno, o sistema avisa quando ele está sumindo, e a faculdade corre para não perder aquela matrícula. O que ainda falta em muitas instituições é um programa que crie motivos concretos para o aluno querer ficar: perspectiva de renda, protagonismo, pesquisa aplicada e conexão real com o mercado.
-      </p>
-      <ul>
-        <li>Campi subutilizados: grandes estruturas ociosas, enquanto a experiência do aluno migra para o online.</li>
-        <li>Diploma sem emprego: alunos concluem o curso sem inserção profissional.</li>
-        <li>Conteúdo descolado da velocidade do mercado e da IA.</li>
-        <li>Investimento alto para captar alunos, pouco plano estruturado para retê‑los e desenvolver sua carreira.</li>
-      </ul>
-      <div class="highlight">
-        O resultado é um modelo caro, reativo e pouco diferenciado — justamente onde a Reitoria precisa ser mais estratégica.
-      </div>
-    </section>
-
-    <section id="proposta">
-      <span class="pill">A proposta TEMPUS</span>
-      <h2>Empreender de verdade, com acesso a crédito</h2>
-      <p>
-        A TEMPUS oferece um programa completo de formação empreendedora, aberto a alunos de todos os cursos, combinado com linhas de crédito específicas para projetos de negócios dos estudantes e egressos. As linhas são estruturadas e operadas pela TEMPUS; a instituição não precisa criar produtos financeiros próprios.
-      </p>
-      <div class="grid-3">
-        <div class="card">
-          <h3>Formação empreendedora transversal</h3>
-          <p>
-            Metodologia prática que une alunos de diferentes áreas para identificar problemas reais, desenhar soluções viáveis e desenvolver modelos de negócio consistentes.
-          </p>
+  <section class="problem-section">
+    <div class="container grid-2">
+      <div>
+        <h2 class="serif" style="font-size: 36px;">O Marketing tradicional <span class="gold-text">não salva</span> mais sua instituição.</h2>
+        <p style="color: var(--gray-400);">O custo de captação sobe, a evasão dispara e o campus físico torna-se um passivo imobiliário. Instituições sem campus perdem prestígio, mas campi vazios perdem dinheiro.</p>
+        
+        <div class="stat-box">
+          <span class="stat-num">Ociosidade Crítica</span>
+          <span>Campi subutilizados enquanto o ensino migra para o online.</span>
         </div>
-        <div class="card">
-          <h3>Crédito para estudantes empreendedores</h3>
-          <p>
-            Crédito semente e de tração, com desembolso por marcos e consultoria de negócios para financiar MVPs, testes de mercado e primeiros ciclos de crescimento.
-          </p>
-        </div>
-        <div class="card">
-          <h3>Apresentação de planos de negócios</h3>
-          <p>
-            Entrega final com banca avaliadora e critérios acadêmicos. Internamente, a instituição pode transformar essa banca em uma rodada de negócios com investidores.
-          </p>
+        <div class="stat-box">
+          <span class="stat-num">Evasão por Formatura</span>
+          <span>Alunos que retardam a graduação por medo do desemprego.</span>
         </div>
       </div>
-    </section>
-
-    <section id="acao">
-      <span class="pill">Da ideia à ação</span>
-      <h2>Não queremos só quem aprende sobre empreendedorismo. Queremos quem empreende.</h2>
-      <p>
-        Faculdades privadas já viram alunos criarem soluções para reduzir evasão, melhorar comunicação e tornar o campus mais inteligente. Esses casos mostram que o espírito empreendedor existe — falta um ambiente estruturado para que isso aconteça de forma recorrente, com apoio institucional e chance real de virar negócio.
-      </p>
-      <p>
-        O Programa Empreenda Tempus foi desenhado exatamente para isso: formar a base de conhecimento em empreendedorismo, estimular a identificação de problemas reais dentro e fora do campus, oferecer mentoria de negócios e, principalmente, disponibilizar linhas de crédito específicas para que os projetos mais promissores possam sair do papel e ganhar escala.
-      </p>
-      <div class="highlight">
-        Conhecimento sem ação vira trabalho de TCC. Conhecimento com crédito e mentoria vira negócio.
+      <div style="background: var(--gray-800); padding: 40px; border-radius: 8px;">
+        <h3 class="serif gold-text">Nossa Tese</h3>
+        <p>Inspirados no modelo de <strong>Stanford</strong>, substituímos o marketing de promessas por um ecossistema de geração de ativos. A TEMPUS injeta cultura empreendedora e opera <strong>linhas de crédito reais para startups</strong> de alunos, transformando a faculdade em sócia-investidora.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="como-funciona">
-      <span class="pill">Como funciona</span>
-      <h2>Integração ao seu modelo acadêmico, sem ruptura</h2>
-      <p class="muted">Um ciclo completo em 4 etapas</p>
-      <div class="grid">
-        <div class="card">
-          <h3>1. Desenho conjunto com a Reitoria</h3>
-          <p>
-            Adequamos carga horária, critérios de seleção e encaixe com disciplinas de extensão, optativas, empresas juniores ou núcleos de inovação. Governança compartilhada com direção e coordenações.
-          </p>
+  <section class="solution-section">
+    <div class="container">
+      <h2 class="serif" style="text-align: center; font-size: 42px; margin-bottom: 60px;">O Novo Modelo de <span class="gold-text">Receita e Retenção</span></h2>
+      <div class="solution-grid">
+        <div class="solution-card">
+          <h3>Capital que Retém</h3>
+          <p>Operamos linhas de crédito para empresas (startups) fundadas no campus. O aluno fica para construir seu patrimônio, não apenas para ouvir aulas.</p>
         </div>
-        <div class="card">
-          <h3>2. Seleção de alunos e egressos</h3>
-          <p>
-            Programa aberto a todos os cursos, com foco em alunos em risco de evasão, lideranças estudantis, membros de empresas juniores e egressos recentes com projetos.
-          </p>
+        <div class="solution-card">
+          <h3>Pesquisa que Lucra</h3>
+          <p>Atraímos empresas e investidores privados para financiar pesquisa aplicada, eliminando a dependência de verbas governamentais.</p>
         </div>
-        <div class="card">
-          <h3>3. Formação e consultoria</h3>
-          <p>
-            Trilhas, oficinas e mentorias 1:1 cobrindo descoberta de problema, validação, modelo de negócios, finanças, crédito, MVP, go‑to‑market e preparação para apresentação final.
-          </p>
-        </div>
-        <div class="card">
-          <h3>4. Apresentação de planos de negócios</h3>
-          <p>
-            Entrega formal avaliada por banca, com critérios definidos junto à área acadêmica. A instituição passa a ter um portfólio de projetos empreendedores vinculados à sua marca.
-          </p>
+        <div class="solution-card">
+          <h3>Ativos Imobiliários</h3>
+          <p>Convertemos laboratórios e salas ociosas em um HUB de negócios pulsante, recuperando o valor estratégico do seu campus físico.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="hub">
-      <span class="pill">Campus vivo</span>
-      <h2>Seu campus deixa de ser “elefante branco” e vira HUB de inovação</h2>
-      <p>
-        O Empreenda Tempus foi concebido para ocupar o campus de forma inteligente. Salas, laboratórios e auditórios tornam‑se palco de oficinas, mentorias, atuação de empresas juniores, prototipagem e apresentações de planos de negócios, com alunos, professores, mentores externos e parceiros de mercado circulando.
-      </p>
-      <ul>
-        <li>Aumenta o uso qualificado da infraestrutura física, em horários muitas vezes ociosos.</li>
-        <li>Reforça o sentimento de pertencimento do aluno, que passa a ver o campus como espaço de criação e negócios.</li>
-        <li>Gera eventos e histórias que fortalecem a marca institucional perante comunidade, empresas e investidores.</li>
-      </ul>
-    </section>
-
-    <section id="ej-startups">
-      <span class="pill">Empresas juniores e startups</span>
-      <h2>De empresa júnior a startup com a marca da faculdade</h2>
-      <p>
-        Empresas juniores são um dos ambientes mais ricos para desenvolver comportamento empreendedor: alunos atendem clientes reais, lidam com prazos, preços e qualidade.
-      </p>
-      <p>
-        O Programa Empreenda Tempus não concorre com as empresas juniores da sua faculdade — ele as fortalece e cria o próximo passo natural. Projetos que nascem em EJ, TCCs ou disciplinas podem evoluir para startups com apoio de mentoria, crédito e, se a instituição desejar, participação societária.
-      </p>
-      <p>
-        A faculdade pode, com critérios claros, tornar‑se sócia investidora de negócios com maior potencial, usando parte do orçamento de inovação ou institucional. E, se os fundadores originais seguirem outros caminhos, sempre haverá novos alunos interessados em assumir ou entrar como sócios em um bom negócio que nasceu dentro do campus.
-      </p>
-      <div class="highlight">
-        Quando a faculdade vira sócia de algumas das startups que nascem ali dentro, ela deixa de apenas formar profissionais para o mercado e passa a construir o próprio mercado, junto com seus alunos.
+  <section class="cta-final" id="contato">
+    <div class="container">
+      <h2 class="serif" style="font-size: 48px;">Uma decisão de <span class="gold-text">Posicionamento.</span></h2>
+      <p style="max-width: 600px; margin: 0 auto;">Este não é um projeto de marketing. É uma reengenharia do valor institucional. Falamos exclusivamente com Reitores, Pró-Reitores e Diretores Estratégicos.</p>
+      
+      <div class="form-minimal">
+        <form>
+          <div class="form-group">
+            <input type="text" placeholder="NOME COMPLETO" required>
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="CARGO (REITORIA / DIREÇÃO)" required>
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="E-MAIL INSTITUCIONAL" required>
+          </div>
+          <div class="form-group">
+            <select required>
+              <option value="" disabled selected>PRINCIPAL DESAFIO</option>
+              <option value="ociosidade">Ociosidade de Campus</option>
+              <option value="evasao">Evasão e Retenção</option>
+              <option value="novas-receitas">Novas Linhas de Receita (Equity)</option>
+              <option value="marca">Reputação e Excelência</option>
+            </select>
+          </div>
+          <div style="margin-top: 40px;">
+            <button type="submit" class="btn btn-gold">Solicitar Apresentação Executiva</button>
+          </div>
+        </form>
       </div>
-    </section>
-
-    <section id="pesquisa-investimento">
-      <span class="pill">Pesquisa e investimento</span>
-      <h2>HUB de negócios: pesquisa aplicada, empresas e investidores dentro do campus</h2>
-      <p>
-        No Brasil, a maior parte da pesquisa formal é financiada por agências públicas e concentrada em universidades públicas, enquanto as faculdades privadas concentram a maioria dos alunos, mas pouco capital para pesquisa aplicada.
-      </p>
-      <p>
-        O HUB de negócios do Programa Empreenda Tempus muda esse jogo ao:
-      </p>
-      <ul>
-        <li>Atrair empresas para desenvolver pesquisa aplicada e inovação junto com alunos e professores, dentro do campus.</li>
-        <li>Formar times empreendedores a partir de empresas juniores e projetos do curso, criando um pipeline de startups e soluções para o mercado.</li>
-        <li>Aproximar investidores, ex‑alunos e a própria faculdade como potenciais sócios e financiadores desses times.</li>
-      </ul>
-      <p>
-        Em alguns casos, o investimento de empresas e ex‑alunos pode, inclusive, ajudar a custear a formação de novos estudantes – alinhando o sucesso do aluno, do negócio e da instituição.
-      </p>
-    </section>
-
-    <section id="investimento-instituicao">
-      <span class="pill">Modelo de contratação</span>
-      <h2>Não é campanha. É investimento estratégico</h2>
-      <p>
-        O Programa Empreenda Tempus é contratado pela instituição, não pelos alunos. A remuneração da TEMPUS vem do orçamento da faculdade — muitas vezes da área de marketing, inovação, extensão ou PDI, conforme a estrutura de cada organização.
-      </p>
-      <ul>
-        <li>O aluno não paga diretamente à TEMPUS pelo programa.</li>
-        <li>A instituição decide se o programa será benefício exclusivo, disciplina, trilha de extensão ou curso certificado.</li>
-        <li>A faixa de valores é definida sob consulta, de acordo com número de alunos, campi envolvidos e profundidade da trilha de crédito.</li>
-      </ul>
-      <div class="highlight">
-        Em vez de mais uma campanha de mídia, você direciona recursos para um programa que atrai, retém, gera pesquisa aplicada e cria histórias reais de sucesso para a sua marca.
-      </div>
-    </section>
-
-    <section id="beneficios">
-      <span class="pill">Resultados esperados</span>
-      <h2>O que a alta gestão ganha</h2>
-      <ul>
-        <li>Redução da evasão por aumento de engajamento, perspectiva de renda e vínculo emocional com a instituição.</li>
-        <li>Melhora dos indicadores de empregabilidade, geração de renda e inovação.</li>
-        <li>Uso mais inteligente do campus físico, mostrando aos mantenedores que a infraestrutura está a serviço da inovação.</li>
-        <li>Diferencial competitivo real em um mercado de faculdades privadas muito parecido em preço e grade.</li>
-        <li>Base rica de cases para comunicação institucional, relacionamento com investidores, empresas e ex‑alunos.</li>
-      </ul>
-    </section>
-
-    <section id="referencias">
-      <span class="pill">Referências</span>
-      <h2>Inspirado em boas práticas de universidades empreendedoras</h2>
-      <p>
-        O desenho do Programa Empreenda Tempus se apoia em experiências de universidades empreendedoras, no Brasil e no exterior, que integram projetos, empresas juniores, extensão e relacionamento com o mercado em um mesmo programa estruturado.
-      </p>
-      <p>
-        Também aprendemos com soluções desenvolvidas por alunos para resolver problemas internos, como plataformas que usam dados de presença e comportamento para atuar antes da evasão. Esses casos mostram que, quando o espírito empreendedor é incentivado, os próprios estudantes criam soluções valiosas para a instituição — e é exatamente esse tipo de atitude que queremos multiplicar.
-      </p>
-    </section>
-
-    <section id="contato" class="cta-section">
-      <span class="pill">Próximo passo</span>
-      <h2>Vamos conversar sobre estratégia, não sobre campanha</h2>
-      <p>
-        Este não é um projeto de mídia. É uma decisão de posicionamento institucional. Nossas conversas iniciais são sempre com reitores, pró‑reitores ou diretores responsáveis pela estratégia acadêmica, inovação, retenção e PDI.
-      </p>
-      <form class="form-grid">
-        <div>
-          <label for="nome">Nome</label>
-          <input id="nome" type="text" placeholder="Seu nome" />
-        </div>
-        <div>
-          <label for="cargo">Cargo</label>
-          <input id="cargo" type="text" placeholder="Reitor, Pró‑reitor, Diretor..." />
-        </div>
-        <div>
-          <label for="instituicao">Instituição</label>
-          <input id="instituicao" type="text" placeholder="Nome da faculdade" />
-        </div>
-        <div>
-          <label for="email">E‑mail institucional</label>
-          <input id="email" type="email" placeholder="voce@faculdade.br" />
-        </div>
-        <div>
-          <label for="telefone">Telefone</label>
-          <input id="telefone" type="tel" placeholder="(DDD) 00000-0000" />
-        </div>
-        <div>
-          <label for="desafio">Principal desafio hoje</label>
-          <select id="desafio">
-            <option value="">Selecione...</option>
-            <option value="empregabilidade">Empregabilidade e renda de alunos</option>
-            <option value="evasao">Evasão e inadimplência</option>
-            <option value="pesquisa">Pesquisa aplicada e relação com empresas</option>
-            <option value="posicionamento">Posicionamento e marca</option>
-            <option value="outro">Outro</option>
-          </select>
-        </div>
-        <div>
-          <label for="mensagem">Conte um pouco mais sobre o contexto</label>
-          <textarea id="mensagem" placeholder="Compartilhe dados, metas ou preocupações específicas da sua instituição."></textarea>
-        </div>
-        <div style="grid-column: span 2; text-align: right;">
-          <button type="submit" class="btn-primary">
-            Agendar conversa estratégica
-          </button>
-        </div>
-      </form>
-    </section>
-
-    <section id="faq">
-      <span class="pill">FAQ</span>
-      <h2>Perguntas frequentes</h2>
-      <div class="card">
-        <h3>Os alunos pagam algo pelo programa?</h3>
-        <p>
-          Não pagam diretamente à TEMPUS. O contrato é feito com a instituição, que decide como integrar o programa à sua oferta acadêmica.
-        </p>
-      </div>
-      <div class="card">
-        <h3>A faculdade precisa criar linhas de crédito próprias?</h3>
-        <p>
-          Não. As linhas de crédito são estruturadas e operadas pela TEMPUS, com regras, análise e acompanhamento próprios.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Empreendedorismo é só para cursos de negócios?</h3>
-        <p>
-          Não. O programa é transversal: alunos de qualquer curso podem participar e criar soluções ligadas à sua área de formação.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Em quanto tempo conseguimos rodar um piloto?</h3>
-        <p>
-          Normalmente entre 3 e 6 meses, dependendo do calendário acadêmico e do número de cursos envolvidos.
-        </p>
-      </div>
-      <div class="card">
-        <h3>Com quem vocês conversam na primeira reunião?</h3>
-        <p>
-          Sempre com reitoria, pró‑reitoria ou direção responsável por estratégia. O time de marketing é parceiro, mas não o “dono” do projeto.
-        </p>
-      </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
   <footer>
-    <div>© TEMPUS Consultoria – Programa Empreenda Tempus.</div>
-    <div class="muted">Site em desenvolvimento. Este formulário ainda não envia os dados para um backend.</div>
+    <div class="container">
+      <p>TEMPUS | UNIVERSITY VENTURE MODEL © 2026. <br>Exclusivo para Instituições de Ensino Superior Privadas.</p>
+    </div>
   </footer>
 
-  <script>
-    const toggle = document.querySelector('.menu-toggle');
-    const menu = document.querySelector('.menu');
-    const topbar = document.querySelector('.topbar');
-
-    if (toggle && menu && topbar) {
-      toggle.addEventListener('click', () => {
-        menu.classList.toggle('open');
-        topbar.classList.toggle('menu-open');
-      });
-
-      // Fecha o menu quando clica em algum link (mobile)
-      menu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          if (menu.classList.contains('open')) {
-            menu.classList.remove('open');
-            topbar.classList.remove('menu-open');
-          }
-        });
-      });
-    }
-  </script>
 </body>
 </html>
